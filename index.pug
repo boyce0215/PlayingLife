@@ -37,54 +37,54 @@ body(data-spy="scroll" data-target=".navbar" data-offset="100")
           button.btn.btn-default.btn-answer(type="button" data-target="#alert" data-toggle="modal") 已選 
             span#answer 明天收盤一定漲
   .modal.fade.work-detail#login(role="dialog")
-      .modal-dialog
-        .modal-content
-          .modal-header
-            h4.modal-title 登入
-            a(herf="#") 還沒有帳號？前往註冊 >
-          .modal-body
-            form
-              .input-group
-                span.input-group-addon
-                  i.fas.fa-envelope
-                input#email.form-control(placeholder="電子郵件")
-              .input-group
-                span.input-group-addon
-                  i.fas.fa-lock
-                input#password.form-control(placeholder="密碼")
-              a(herf="#") 忘記密碼?
-              button.btn.btn-primary.btn-block(type="submit") 登入
+    .modal-dialog
+      .modal-content
+        .modal-header
+          h4.modal-title 登入
+          a(herf="#") 還沒有帳號？前往註冊 >
+        .modal-body
+          form
+            .input-group
+              span.input-group-addon
+                i.fas.fa-envelope
+              input#email.form-control(placeholder="電子郵件")
+            .input-group
+              span.input-group-addon
+                i.fas.fa-lock
+              input#password.form-control(placeholder="密碼")
+            a(herf="#") 忘記密碼?
+            button.btn.btn-primary.btn-block(type="submit") 登入
   .modal.fade.work-detail#register(role="dialog")
-      .modal-dialog
-        .modal-content
-          .modal-header
-            h4.modal-title 註冊
-            a(herf="#") 已經有帳號？登入 >
-          .modal-body
-            form
-              .input-group
-                span.input-group-addon
-                  i.fas.fa-envelope
-                input#email.form-control(placeholder="電子郵件")
-              .input-group
-                span.input-group-addon
-                  i.fas.fa-lock
-                input#password.form-control(placeholder="密碼")
-              .input-group
-                span.input-group-addon
-                  i.fas.fa-lock
-                input#re-password.form-control(placeholder="確認密碼")
-              button.btn.btn-primary.btn-block(type="submit") 註冊
+    .modal-dialog
+      .modal-content
+        .modal-header
+          h4.modal-title 註冊
+          a(herf="#") 已經有帳號？登入 >
+        .modal-body
+          form
+            .input-group
+              span.input-group-addon
+                i.fas.fa-envelope
+              input#email.form-control(placeholder="電子郵件")
+            .input-group
+              span.input-group-addon
+                i.fas.fa-lock
+              input#password.form-control(placeholder="密碼")
+            .input-group
+              span.input-group-addon
+                i.fas.fa-lock
+              input#re-password.form-control(placeholder="確認密碼")
+            button.btn.btn-primary.btn-block(type="submit") 註冊
   .modal.fade.work-detail#alert(role="dialog")
-      .modal-dialog.modal-sm
-        .modal-content
-          .modal-body.text-center
-            h3.title 台積電(2330)明日收盤股價預測
-            p.text 台灣指數不斷創新高，行情還能維持多久？
-            p.text 你選擇了
-              span.answer 明天收盤一定跌
-            button.btn.btn-default.btn-custom(type="submit") 後悔了
-            button.btn.btn-default.btn-custom(type="submit") 不後悔
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-body.text-center
+          h3.title 台積電(2330)明日收盤股價預測
+          p.text 台灣指數不斷創新高，行情還能維持多久？
+          p.text 你選擇了
+            span.answer 明天收盤一定跌
+          button.btn.btn-default.btn-custom(type="submit") 後悔了
+          button.btn.btn-default.btn-custom(type="submit") 不後悔
 
   footer
     .container
