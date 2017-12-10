@@ -1,0 +1,104 @@
+@charset "UTF-8";
+html {
+  font-size: 62.5%; }
+
+body {
+  position: relative; }
+
+* {
+  font-family: 微軟正黑體; }
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: bold; }
+
+nav.navbar {
+  background-color: transparent;
+  border: 0px; }
+  nav.navbar .navbar-nav .btn-custom {
+    border-radius: 0px;
+    padding: 6px 20px; }
+
+header {
+  background-image: url(../images/bg.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  margin-bottom: 0; }
+  header .container {
+    color: #555;
+    padding: 200px 0px; }
+  header .heading {
+    font-size: 4.8rem; }
+  header .text {
+    font-size: 2.4rem; }
+  header .btn-custom {
+    padding: 16px 48px;
+    font-size: 1.8rem; }
+
+section#play {
+  background-color: #ddd;
+  padding: 60px 0; }
+  section#play .heading {
+    font-size: 3rem; }
+  section#play hr {
+    width: 50%;
+    border-top: 1px solid #444;
+    margin-bottom: 40px; }
+  section#play .content {
+    background-color: #FFF;
+    line-height: 2;
+    padding: 40px; }
+  section#play .view {
+    background-color: #333;
+    width: 400px;
+    height: 300px;
+    margin: 0 auto; }
+  section#play .btn-custom {
+    margin: 20px 20px;
+    padding: 16px 24px;
+    font-size: 1.8rem; }
+  section#play .btn-answer {
+    padding: 16px 24px;
+    font-size: 1.8rem;
+    margin: 20px 20px;
+    display: none; }
+
+#login .modal-content, #register .modal-content {
+  padding: 20px 40px; }
+  #login .modal-content a, #register .modal-content a {
+    cursor: pointer;
+    text-decoration: none;
+    float: right;
+    margin-bottom: 15px; }
+#login .modal-header .modal-title, #register .modal-header .modal-title {
+  font-size: 2.4rem;
+  display: inline-block; }
+#login .modal-body .input-group-addon, #register .modal-body .input-group-addon {
+  background-color: #FFF;
+  border-right: 0px; }
+#login .modal-body .input-group, #register .modal-body .input-group {
+  margin-bottom: 15px; }
+#login .modal-body .form-control, #register .modal-body .form-control {
+  border-left: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  padding-left: 0px; }
+  #login .modal-body .form-control:focus, #register .modal-body .form-control:focus {
+    border-color: #aaa; }
+
+#alert .answer {
+  font-weight: bold;
+  padding-left: 4px; }
+#alert .btn-custom {
+  margin: 12px 8px;
+  padding: 8px 16px;
+  font-size: 1.8rem; }
+
+footer {
+  background-color: #8b8b8b;
+  color: #fff;
+  text-align: center;
+  padding: 30px 0px; }
+  footer p {
+    margin-bottom: 0px; }
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+html(lang="zh-hant-tw")
+head
+  meta(charset="UTF-8")
+  meta(name="viewport" content="width=device-width, initial-scale=1, user-scalable=no")
+  title PlayingLife
+  link(rel="stylesheet", href="css/normalize.css")
+  link(rel="stylesheet", href="css/bootstrap.min.css")
+  script(defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js")
+  link(rel="stylesheet", href="css/style.css")
+
+body(data-spy="scroll" data-target=".navbar" data-offset="100")
+  nav.navbar.navbar-default.navbar-fixed-top
+    .container
+      .navbar-header
+        a.navbar-brand <strong>PlayingLife</strong>
+      .nav.navbar-nav.navbar-right
+        button.btn.btn-default.navbar-btn.btn-custom(type="button" data-target="#login" data-toggle="modal") 登入
+        button.btn.btn-default.navbar-btn.btn-custom(type="button" data-target="#register" data-toggle="modal") 註冊
+  header#banner
+    .container.text-center
+      h1.heading 讓我們成為你生活中的小確幸
+      br
+      p.text 現在開始每天進來玩預測遊戲<br>連續猜對 5 次 直接送你大杯星巴克
+      button.btn.btn-default.btn-custom 馬上玩遊戲
+  section#play
+    .container.text-center
+      h2.heading 玩預測請你喝星巴克，就是這麼簡單
+      hr
+      .row
+        .col-sm-6.col-sm-offset-3.content
+          h3.title 台積電(2330)明日收盤股價預測
+          p.text 台灣指數不斷創新高，行情還能維持多久？
+          .view
+          button.btn.btn-default.btn-custom(type="button" data-target="#alert" data-toggle="modal") 明天收盤一定跌
+          button.btn.btn-default.btn-custom(type="button" data-target="#alert" data-toggle="modal") 明天收盤一定漲
+          button.btn.btn-default.btn-answer(type="button" data-target="#alert" data-toggle="modal") 已選 
+            span#answer 明天收盤一定漲
+  .modal.fade.work-detail#login(role="dialog")
+      .modal-dialog
+        .modal-content
+          .modal-header
+            h4.modal-title 登入
+            a(herf="#") 還沒有帳號？前往註冊 >
+          .modal-body
+            form
+              .input-group
+                span.input-group-addon
+                  i.fas.fa-envelope
+                input#email.form-control(placeholder="電子郵件")
+              .input-group
+                span.input-group-addon
+                  i.fas.fa-lock
+                input#password.form-control(placeholder="密碼")
+              a(herf="#") 忘記密碼?
+              button.btn.btn-primary.btn-block(type="submit") 登入
+  .modal.fade.work-detail#register(role="dialog")
+      .modal-dialog
+        .modal-content
+          .modal-header
+            h4.modal-title 註冊
+            a(herf="#") 已經有帳號？登入 >
+          .modal-body
+            form
+              .input-group
+                span.input-group-addon
+                  i.fas.fa-envelope
+                input#email.form-control(placeholder="電子郵件")
+              .input-group
+                span.input-group-addon
+                  i.fas.fa-lock
+                input#password.form-control(placeholder="密碼")
+              .input-group
+                span.input-group-addon
+                  i.fas.fa-lock
+                input#re-password.form-control(placeholder="確認密碼")
+              button.btn.btn-primary.btn-block(type="submit") 註冊
+  .modal.fade.work-detail#alert(role="dialog")
+      .modal-dialog.modal-sm
+        .modal-content
+          .modal-body.text-center
+            h3.title 台積電(2330)明日收盤股價預測
+            p.text 台灣指數不斷創新高，行情還能維持多久？
+            p.text 你選擇了
+              span.answer 明天收盤一定跌
+            button.btn.btn-default.btn-custom(type="submit") 後悔了
+            button.btn.btn-default.btn-custom(type="submit") 不後悔
+
+  footer
+    .container
+      p Copyright © 2017 tset. All Rights Reserved.
+script(src="js/jquery-3.1.1.min.js")
+script(src="js/bootstrap.min.js")
+//- script(src="https://unpkg.com/isotope-layout@3.0.1/dist/isotope.pkgd.min.js")
+script(src="js/index.js")
