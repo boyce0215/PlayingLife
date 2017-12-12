@@ -13,17 +13,26 @@
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header"><a class="navbar-brand"><strong>PlayingLife</strong></a></div>
-      <div class="nav navbar-nav navbar-right">
-        <button class="btn btn-default navbar-btn btn-custom" type="button" data-target="#login" data-toggle="modal">登入</button>
-        <button class="btn btn-default navbar-btn btn-custom" type="button" data-target="#register" data-toggle="modal">註冊</button>
+      <div id="visitors">
+        <div class="nav navbar-nav navbar-right">
+          <button class="btn btn-default navbar-btn btn-custom" type="button" data-target="#login" data-toggle="modal">登入</button>
+          <button class="btn btn-default navbar-btn btn-custom" type="button" data-target="#register" data-toggle="modal">註冊</button>
+        </div>
+      </div>
+      <div id="member">
+        <div class="nav navbar-nav">
+          <div class="navbar-text"><span>連續獲勝</span><span class="count">0</span><span>次</span></div>
+        </div>
+        <div class="nav navbar-nav navbar-right">
+          <button class="btn btn-default navbar-btn btn-custom" type="button">登出</button>
+        </div>
       </div>
     </div>
   </nav>
   <header id="banner">
     <div class="container text-center">
       <h1 class="heading">讓我們成為你生活中的小確幸</h1><br/>
-      <p class="text">現在開始每天進來玩預測遊戲<br>連續猜對 5 次 直接送你大杯星巴克</p>
-      <button class="btn btn-default btn-custom">馬上玩遊戲</button>
+      <p class="text">現在開始每天進來玩預測遊戲<br>連續猜對 5 次 直接送你大杯星巴克</p><a class="btn btn-default btn-custom" href="#play">馬上玩遊戲</a>
     </div>
   </header>
   <section id="play">

@@ -14,15 +14,24 @@ body
     .container
       .navbar-header
         a.navbar-brand <strong>PlayingLife</strong>
-      .nav.navbar-nav.navbar-right
-        button.btn.btn-default.navbar-btn.btn-custom(type="button" data-target="#login" data-toggle="modal") 登入
-        button.btn.btn-default.navbar-btn.btn-custom(type="button" data-target="#register" data-toggle="modal") 註冊
+      #visitors
+        .nav.navbar-nav.navbar-right
+          button.btn.btn-default.navbar-btn.btn-custom(type="button" data-target="#login" data-toggle="modal") 登入
+          button.btn.btn-default.navbar-btn.btn-custom(type="button" data-target="#register" data-toggle="modal") 註冊
+      #member
+        .nav.navbar-nav
+          .navbar-text
+            span 連續獲勝
+            span.count 0
+            span 次
+        .nav.navbar-nav.navbar-right
+          button.btn.btn-default.navbar-btn.btn-custom(type="button") 登出
   header#banner
     .container.text-center
       h1.heading 讓我們成為你生活中的小確幸
       br
       p.text 現在開始每天進來玩預測遊戲<br>連續猜對 5 次 直接送你大杯星巴克
-      button.btn.btn-default.btn-custom 馬上玩遊戲
+      a.btn.btn-default.btn-custom(href="#play") 馬上玩遊戲
   section#play
     .container.text-center
       h2.heading 玩預測請你喝星巴克，就是這麼簡單

@@ -18,6 +18,15 @@ nav.navbar {
     border-radius: 0px;
     padding: 6px 20px; }
 
+#member {
+  display: none; }
+  #member span {
+    vertical-align: middle; }
+  #member .count {
+    padding: 0 10px;
+    font-size: 1.8rem;
+    font-weight: bold; }
+
 header {
   background-image: url(../images/bg.jpg);
   background-size: cover;
