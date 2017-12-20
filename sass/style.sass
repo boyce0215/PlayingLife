@@ -10,24 +10,32 @@ body
   position: relative
 *
   font-family: 微軟正黑體
-    
+  // box-sizing: border-box
+a
+  cursor: pointer
+  text-decoration: none
 h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6
   font-weight: bold
 nav.navbar
-  background-color: transparent
+  background-color: #444
   border: 0px
   .navbar-nav
     .btn-custom
       border-radius: 0px
       padding: 6px 20px
-#member
-  display: none
-  span
-    vertical-align: middle
-  .count
-    padding: 0 10px
-    font-size: 1.8rem
-    font-weight: bold
+  #visitors
+    display: none
+  #member
+    // display: none
+    span
+      vertical-align: middle
+    .count
+      padding: 0 10px
+      font-size: 1.8rem
+      font-weight: bold
+    #member-id
+      color: #eee
+      margin-right: 8px
 header
   background-image: url(../images/bg.jpg)
   background-size: cover
@@ -70,12 +78,10 @@ section#play
     font-size: 1.8rem
     margin: 20px 20px
     display: none
-#login,#register
+#login,#register,#forget,#sent
   .modal-content
     padding: 20px 40px
     a
-      cursor: pointer
-      text-decoration: none
       float: right
       margin-bottom: 15px
   .modal-header
@@ -95,6 +101,22 @@ section#play
       padding-left: 0px
       &:focus
         border-color: #aaa
+    .context
+      display: block
+      margin-bottom: 15px
+    .prompt
+      display: block
+      text-align: right
+      margin-top: 15px
+    .btn-custom
+      padding: 8px 64px
+    .btn-right
+      float: right
+    .highlight
+      display: block
+      margin: 20px auto
+      color: #aaa
+      font-size: 1.6rem
 #alert
   .answer
     font-weight: bold
@@ -111,9 +133,9 @@ footer
   p
     margin-bottom: 0px
 @media screen and (min-width: 768px)
-  #login,#register
+  #login,#register,#forget,#sent
     .modal-dialog
-      margin: 140px auto
+      margin: 245px auto
   #alert
     .modal-dialog
       margin: 165px auto

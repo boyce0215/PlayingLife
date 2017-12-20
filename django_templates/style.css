@@ -8,24 +8,30 @@ body {
 * {
   font-family: 微軟正黑體; }
 
+a {
+  cursor: pointer;
+  text-decoration: none; }
+
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-weight: bold; }
 
 nav.navbar {
-  background-color: transparent;
+  background-color: #444;
   border: 0px; }
   nav.navbar .navbar-nav .btn-custom {
     border-radius: 0px;
     padding: 6px 20px; }
-
-/*#member {
-  display: none; }*/
-  #member span {
+/*  nav.navbar #visitors {
+    display: none; }*/
+  nav.navbar #member span {
     vertical-align: middle; }
-  #member .count {
+  nav.navbar #member .count {
     padding: 0 10px;
     font-size: 1.8rem;
     font-weight: bold; }
+  nav.navbar #member #member-id {
+    color: #eee;
+    margin-right: 8px; }
 
 header {
   background-image: url(../images/bg.jpg);
@@ -69,32 +75,46 @@ section#play {
     padding: 16px 24px;
     font-size: 1.8rem;
     margin: 20px 20px;
-    /*display: none;*/ }
+    /*display: none; }*/
 
-#login .modal-content, #register .modal-content {
+#login .modal-content, #register .modal-content, #forget .modal-content, #sent .modal-content {
   padding: 20px 40px; }
-  #login .modal-content a, #register .modal-content a {
-    cursor: pointer;
-    text-decoration: none;
+  #login .modal-content a, #register .modal-content a, #forget .modal-content a, #sent .modal-content a {
     float: right;
     margin-bottom: 15px; }
-#login .modal-header .modal-title, #register .modal-header .modal-title {
+#login .modal-header .modal-title, #register .modal-header .modal-title, #forget .modal-header .modal-title, #sent .modal-header .modal-title {
   font-size: 2.4rem;
   display: inline-block; }
-#login .modal-body .input-group-addon, #register .modal-body .input-group-addon {
+#login .modal-body .input-group-addon, #register .modal-body .input-group-addon, #forget .modal-body .input-group-addon, #sent .modal-body .input-group-addon {
   background-color: #FFF;
   border-right: 0px; }
-#login .modal-body .input-group, #register .modal-body .input-group {
+#login .modal-body .input-group, #register .modal-body .input-group, #forget .modal-body .input-group, #sent .modal-body .input-group {
   margin-bottom: 15px; }
-#login .modal-body .form-control, #register .modal-body .form-control {
+#login .modal-body .form-control, #register .modal-body .form-control, #forget .modal-body .form-control, #sent .modal-body .form-control {
   border-left: 0px;
   -webkit-box-shadow: none;
   box-shadow: none;
   padding-left: 0px; }
-  #login .modal-body .form-control:focus, #register .modal-body .form-control:focus {
+  #login .modal-body .form-control:focus, #register .modal-body .form-control:focus, #forget .modal-body .form-control:focus, #sent .modal-body .form-control:focus {
     border-color: #aaa; }
+#login .modal-body .context, #register .modal-body .context, #forget .modal-body .context, #sent .modal-body .context {
+  display: block;
+  margin-bottom: 15px; }
+#login .modal-body .prompt, #register .modal-body .prompt, #forget .modal-body .prompt, #sent .modal-body .prompt {
+  display: block;
+  text-align: right;
+  margin-top: 15px; }
+#login .modal-body .btn-custom, #register .modal-body .btn-custom, #forget .modal-body .btn-custom, #sent .modal-body .btn-custom {
+  padding: 8px 64px; }
+#login .modal-body .btn-right, #register .modal-body .btn-right, #forget .modal-body .btn-right, #sent .modal-body .btn-right {
+  float: right; }
+#login .modal-body .highlight, #register .modal-body .highlight, #forget .modal-body .highlight, #sent .modal-body .highlight {
+  display: block;
+  margin: 20px auto;
+  color: #aaa;
+  font-size: 1.6rem; }
 
-#alert #option-answer {
+#alert .answer {
   font-weight: bold;
   padding-left: 4px; }
 #alert .btn-custom {
@@ -111,8 +131,8 @@ footer {
     margin-bottom: 0px; }
 
 @media screen and (min-width: 768px) {
-  #login .modal-dialog, #register .modal-dialog {
-    margin: 140px auto; }
+  #login .modal-dialog, #register .modal-dialog, #forget .modal-dialog, #sent .modal-dialog {
+    margin: 245px auto; }
 
   #alert .modal-dialog {
     margin: 165px auto; } }
