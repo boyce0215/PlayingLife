@@ -108,10 +108,10 @@
         <div class="modal-body">
           <form id="register-form" data-toggle="validator" role="form" method="post">
             {% csrf_token %}
-            <div class="form-group">
+            <div class="form-group" id="register-email">
               <div class="input-group"><span class="input-group-addon"><i class="fas fa-envelope"></i></span>
                  {{ register_form.email }}
-              </div><span class="help-block with-errors"></span>
+              </div><span class="help-block with-errors email-errors"></span>
             </div>
             <div class="form-group">
               <div class="input-group"><span class="input-group-addon"><i class="fas fa-lock"></i></span>
@@ -123,7 +123,7 @@
                 {{ register_form.password2 }}
               </div><span class="help-block with-errors"></span>
             </div>
-            <button class="btn btn-primary btn-block" type="submit" name="register_home" value="Register_Home">註冊</button>
+            <button class="btn btn-primary btn-block" type="submit" id="register-button">註冊</button>
           </form>
         </div>
       </div>

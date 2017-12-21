@@ -34,3 +34,24 @@ $("button.answer-option").click(function(){
   $("span#option-answer").text($(this).text());
   $("span#option-answer").attr("value", $(this).attr("value"));
 });
+$("button#register-button").click(function(event){
+  event.preventDefault();
+
+  var registerEmail = $.grep(
+    $('#register-form').serializeArray(),
+    function(element){ return element.name === "email"; })[0].value;
+
+  $.get("user?useremail="+registerEmail, function(existedUser) {
+    if (existedUser.length === 0) {
+      $('<input />').attr('type', 'hidden')
+          .attr('name', "register_home")
+          .attr('value', "Register_Home")
+          .appendTo('#register-form');
+      $('#register-form').submit();
+    } else {
+      $('#register-email').addClass("has-error");
+      $('#register-form span.email-errors').text("這個帳號已經被註冊過囉～");
+    }
+  });
+
+});
