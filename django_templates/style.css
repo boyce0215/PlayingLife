@@ -49,33 +49,35 @@ header {
     padding: 16px 48px;
     font-size: 1.8rem; }
 
-section#play {
+section#play, section#result {
   background-color: #ddd;
   padding: 60px 0; }
-  section#play .heading {
+  section#play .heading, section#result .heading {
     font-size: 3rem; }
-  section#play hr {
+  section#play hr, section#result hr {
     width: 50%;
     border-top: 1px solid #444;
     margin-bottom: 40px; }
-  section#play .content {
+  section#play .content, section#result .content {
     background-color: #FFF;
     line-height: 2;
     padding: 40px; }
-  section#play .view {
+  section#play .view, section#result .view {
     background-color: #333;
     width: 400px;
     height: 300px;
     margin: 0 auto; }
-  section#play .btn-custom {
+  section#play .btn-custom, section#result .btn-custom {
     margin: 20px 20px;
     padding: 16px 24px;
     font-size: 1.8rem; }
-  section#play .btn-answer {
+  section#play .btn-answer, section#result .btn-answer {
     padding: 16px 24px;
     font-size: 1.8rem;
-    margin: 20px 20px;
-    /*display: none; }*/
+    margin: 20px 20px; }
+
+section#result {
+  padding-top: 10px; }
 
 #login .modal-content, #register .modal-content, #forget .modal-content, #sent .modal-content {
   padding: 20px 40px; }

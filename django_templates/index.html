@@ -58,8 +58,23 @@
             <button class="btn btn-default btn-custom answer-option" type="button" data-target="#login" data-toggle="modal" value="option_second">{{ current_betting.option_second }}</button>
             {% endif %}
           {% else %}
-            <button class="btn btn-default btn-answer" type="button" data-target="#alert" data-toggle="modal"><span id="select-answer">{{selected_answer}}</span></button>
+            <button class="btn btn-default btn-answer" type="button"><span id="select-answer">{{selected_answer}}</span></button>
           {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="result">
+    <div class="container text-center">
+      <h2 class="heading">昨日預測戰積</h2>
+      <hr/>
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 content">
+          <h3 class="title">台積電(2330)明日收盤股價預測</h3>
+          <p class="text">台灣指數不斷創新高，行情還能維持多久？</p>
+          <div class="view"></div>
+          <button class="btn btn-default btn-answer" type="button">預測成功</button>
+          <button class="btn btn-default btn-answer" type="button">再接再厲</button>
         </div>
       </div>
     </div>

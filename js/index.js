@@ -17,6 +17,20 @@ $("#forget #goto-sent").click(function(){
 $("#logout-button").click(function(){
   window.location.href = '/accounts/logout/';
 });
-$("button[type=cancel]").click(function(){
+$("button.answer-select[type=cancel]").click(function(event){
+  event.preventDefault();
   $("#alert").modal("hide");
+});
+$("button.answer-select[type=submit]").click(function(event){
+  event.preventDefault();
+  var input = $("<input>")
+   .attr("type", "hidden")
+   .attr("name", "answer-select").val($("span#option-answer").attr("value"));
+  $('#play-form').append($(input));
+  $("span#select-answer").text($("span#option-answer").text());
+  $('#play-form').submit();
+});
+$("button.answer-option").click(function(){
+  $("span#option-answer").text($(this).text());
+  $("span#option-answer").attr("value", $(this).attr("value"));
 });
