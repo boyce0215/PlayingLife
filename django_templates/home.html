@@ -8,7 +8,10 @@
   <link rel="stylesheet" href="{% static 'css/normalize.css' %}"/>
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
   <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+  <link rel="stylesheet" href="https://use.typekit.net/uyn6hce.css"/>
   <script defer="defer" src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
+  <script src="https://use.typekit.net/uyn6hce.js"></script>
+  <script try{Typekit.load({="try{Typekit.load({" async:="async:" true="true" });}catch(e){}="});}catch(e){}"></script>
 </head>
 <body>
   <nav class="navbar navbar-default navbar-fixed-top">
@@ -35,8 +38,8 @@
   </nav>
   <header id="banner">
     <div class="container text-center">
-      <h1 class="heading">讓我們成為你生活中的小確幸</h1><br/>
-      <p class="text">現在開始每天進來玩預測遊戲<br>連續猜對 5 次 直接送你大杯星巴克</p><a class="btn btn-default btn-custom" href="#play">馬上玩遊戲</a>
+      <h1 class="heading">讓我們成為你生活中的小確幸專訪</h1><br/>
+      <p class="text font-sans">現在開始每天進來玩預測遊戲<br>連續猜對 5 次 直接送你大杯星巴克</p><a class="btn btn-default btn-custom" href="#play">馬上玩遊戲</a>
     </div>
   </header>
   <section id="play">
@@ -136,9 +139,13 @@
           <h4 class="modal-title">忘記密碼</h4>
         </div>
         <div class="modal-body"><span class="context">請輸入註冊時設定的電子郵件帳號<br>我們將寄送一封電子郵件協助您重設密碼</span>
-          <form>
-            <div class="input-group"><span class="input-group-addon"><i class="fas fa-envelope"></i></span>
-              <input class="form-control" id="email" placeholder="電子郵件"/>
+          <form id="password-reset-form" method="post" action="{% url 'rest_password_reset' %}">
+            {% csrf_token %}
+            <div class="form-group">
+              <div class="input-group"><span class="input-group-addon"><i class="fas fa-envelope"></i></span>
+                <input class="form-control" name="email" id="email" placeholder="電子郵件"/>
+              </div>
+              <span class="help-block with-errors email-errors"></span>
             </div>
             <button class="btn btn-default btn-custom" type="cancel">取消</button>
             <button class="btn btn-default btn-custom btn-right" id="goto-sent" type="submit">重設密碼</button>
@@ -153,7 +160,7 @@
         <div class="modal-header">
           <h4 class="modal-title">重設密碼郵件已發送</h4>
         </div>
-        <div class="modal-body"><span>我們已經寄送一封重設密碼郵件至您的信箱<br></span><span>danny@cmoney.com.tw</span><span><br>請依照指示重設密碼</span><span class="highlight"><br>沒有收到密碼重設信嗎？</span>
+        <div class="modal-body"><span>我們已經寄送一封重設密碼郵件至您的信箱<br></span><span id="sent-reset-email"></span><span><br>請依照指示重設密碼</span><span class="highlight"><br>沒有收到密碼重設信嗎？</span>
           <button class="btn btn-default btn-custom btn-right" type="submit">重設密碼</button>
         </div>
       </div>
