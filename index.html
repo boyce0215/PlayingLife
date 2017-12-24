@@ -7,7 +7,10 @@
   <link rel="stylesheet" href="css/normalize.css"/>
   <link rel="stylesheet" href="css/bootstrap.min.css"/>
   <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="https://use.typekit.net/uyn6hce.css"/>
   <script defer="defer" src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
+  <script src="https://use.typekit.net/uyn6hce.js"></script>
+  <script try{Typekit.load({="try{Typekit.load({" async:="async:" true="true" });}catch(e){}="});}catch(e){}"></script>
 </head>
 <body>
   <nav class="navbar navbar-default navbar-fixed-top">
@@ -31,8 +34,8 @@
   </nav>
   <header id="banner">
     <div class="container text-center">
-      <h1 class="heading">讓我們成為你生活中的小確幸</h1><br/>
-      <p class="text">現在開始每天進來玩預測遊戲<br>連續猜對 5 次 直接送你大杯星巴克</p><a class="btn btn-default btn-custom" href="#play">馬上玩遊戲</a>
+      <h1 class="heading">讓我們成為你生活中的小確幸專訪</h1><br/>
+      <p class="text font-sans">現在開始每天進來玩預測遊戲<br>連續猜對 5 次 直接送你大杯星巴克</p><a class="btn btn-default btn-custom" href="#play">馬上玩遊戲</a>
     </div>
   </header>
   <section id="play">
@@ -94,10 +97,10 @@
         </div>
         <div class="modal-body">
           <form id="register-form" data-toggle="validator" role="form" method="post">
-            <div class="form-group" id="register-email">
+            <div class="form-group">
               <div class="input-group"><span class="input-group-addon"><i class="fas fa-envelope"></i></span>
                 <input class="form-control" id="email" placeholder="電子郵件"/>
-              </div><span class="help-block with-errors email-errors"></span>
+              </div><span class="help-block with-errors"></span>
             </div>
             <div class="form-group">
               <div class="input-group"><span class="input-group-addon"><i class="fas fa-lock"></i></span>
@@ -109,7 +112,7 @@
                 <input class="form-control" id="re-password" placeholder="確認密碼"/>
               </div><span class="help-block with-errors"></span>
             </div>
-            <button class="btn btn-primary btn-block" type="submit" id="register-button">註冊</button>
+            <button class="btn btn-primary btn-block" type="submit" name="register_home" value="Register_Home">註冊</button>
           </form>
         </div>
       </div>
@@ -152,7 +155,7 @@
           <form id="play-form" method="post">
             <h3 class="title">台積電(2330)明日收盤股價預測</h3>
             <p class="text">台灣指數不斷創新高，行情還能維持多久？</p>
-            <p class="text">你選擇了<span class="answer" id="option-answer">明天收盤一定跌</span></p>
+            <p class="text">你選擇了<span class="answer">明天收盤一定跌</span></p>
             <button class="btn btn-default btn-custom answer-select" type="cancel">後悔了</button>
             <button class="btn btn-default btn-custom answer-select" type="submit">不後悔</button>
           </form>
@@ -166,7 +169,7 @@
     </div>
   </footer>
 </body>
-<script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
-<script src="{% static 'js/validator.min.js' %}"></script>
-<script src="{% static 'js/index.js' %}"></script>
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/validator.min.js"></script>
+<script src="js/index.js"></script>

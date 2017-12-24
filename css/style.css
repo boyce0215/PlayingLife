@@ -1,19 +1,18 @@
-@charset "UTF-8";
 html {
   font-size: 62.5%; }
 
 body {
   position: relative; }
 
-* {
-  font-family: 微軟正黑體; }
-
 a {
   cursor: pointer;
   text-decoration: none; }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-weight: bold; }
+  font-family: "source-han-serif-tc", serif; }
+
+.font-sans {
+  font-family: -apple-system, BlinkMacSystemFont, "Noto Sans", sans-serif; }
 
 nav.navbar {
   background-color: #444;
@@ -37,14 +36,17 @@ header {
   background-image: url(../images/bg.jpg);
   background-size: cover;
   background-attachment: fixed;
+  background-position: 50% 85%;
   margin-bottom: 0; }
   header .container {
     color: #555;
     padding: 200px 0px; }
   header .heading {
-    font-size: 4.8rem; }
+    font-size: 4rem;
+    color: #fff; }
   header .text {
-    font-size: 2.4rem; }
+    font-size: 2rem;
+    color: #fff; }
   header .btn-custom {
     padding: 16px 48px;
     font-size: 1.8rem; }

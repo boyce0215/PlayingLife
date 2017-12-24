@@ -11,7 +11,10 @@ head
   link(rel="stylesheet", href="css/normalize.css")
   link(rel="stylesheet", href="css/bootstrap.min.css")
   link(rel="stylesheet", href="css/style.css")
+  link(rel="stylesheet" href="https://use.typekit.net/uyn6hce.css")
   script(defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js")
+  script(src="https://use.typekit.net/uyn6hce.js")
+  script(try{Typekit.load({ async: true });}catch(e){})
 body
   nav.navbar.navbar-default.navbar-fixed-top
     .container
@@ -35,9 +38,9 @@ body
       //- {% endif %}
   header#banner
     .container.text-center
-      h1.heading 讓我們成為你生活中的小確幸
+      h1.heading 讓我們成為你生活中的小確幸專訪
       br
-      p.text 現在開始每天進來玩預測遊戲<br>連續猜對 5 次 直接送你大杯星巴克
+      p.text.font-sans 現在開始每天進來玩預測遊戲<br>連續猜對 5 次 直接送你大杯星巴克
       a.btn.btn-default.btn-custom(href="#play") 馬上玩遊戲
   section#play
     .container.text-center
@@ -175,12 +178,12 @@ body
 //-   <p>Welcome {{ user.email }} !!!</p>
 //- {% endif %}
 
-script(src="{% static 'js/jquery-3.1.1.min.js' %}")
-script(src="{% static 'js/bootstrap.min.js' %}")
-script(src="{% static 'js/validator.min.js' %}")
-script(src="{% static 'js/index.js' %}")
+//- script(src="{% static 'js/jquery-3.1.1.min.js' %}")
+//- script(src="{% static 'js/bootstrap.min.js' %}")
+//- script(src="{% static 'js/validator.min.js' %}")
+//- script(src="{% static 'js/index.js' %}")
 
-//- script(src="js/jquery-3.1.1.min.js")
-//- script(src="js/bootstrap.min.js")
-//- script(src="js/validator.min.js")
-//- script(src="js/index.js")
+script(src="js/jquery-3.1.1.min.js")
+script(src="js/bootstrap.min.js")
+script(src="js/validator.min.js")
+script(src="js/index.js")
