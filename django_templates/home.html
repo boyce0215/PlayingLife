@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="{% static 'css/normalize.css' %}"/>
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
   <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
-  <link rel="stylesheet" href="https://use.typekit.net/uyn6hce.css"/>
   <script defer="defer" src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
   <script src="https://use.typekit.net/uyn6hce.js"></script>
   <script try{Typekit.load({="try{Typekit.load({" async:="async:" true="true" });}catch(e){}="});}catch(e){}"></script>
@@ -60,7 +59,7 @@
             <button class="btn btn-default btn-custom answer-option" type="button" data-target="#login" data-toggle="modal" value="option_second">{{ current_betting.option_second }}</button>
             {% endif %}
           {% else %}
-            <button class="btn btn-default btn-answer" type="button">已選 <span id="select-answer">{{selected_answer}}</span></button>
+            <div class="btn btn-default btn-answer">已選 <span id="select-answer">{{selected_answer}}</span></div>
           {% endif %}
         </div>
       </div>
@@ -75,8 +74,8 @@
           <h3 class="title">台積電(2330)明日收盤股價預測</h3>
           <p class="text">台灣指數不斷創新高，行情還能維持多久？</p>
           <div class="view"></div>
-          <button class="btn btn-default btn-answer" type="button">預測成功</button>
-          <button class="btn btn-default btn-answer" type="button">再接再厲</button>
+          <div class="btn btn-default btn-answer">預測成功</div>
+          <div class="btn btn-default btn-answer">再接再厲</div>
         </div>
       </div>
     </div>
