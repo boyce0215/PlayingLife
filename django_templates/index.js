@@ -45,8 +45,44 @@ $("button#register-button").click(function(event){
           .appendTo('#register-form');
       $('#register-form').submit();
     } else {
-      $('#register-email').addClass("has-error");
+      $('#register-email-group').addClass("has-error");
       $('#register-form span.email-errors').text("這個帳號已經被註冊過囉～");
+    }
+  });
+});
+
+$("button#login-button").click(function(event){
+  event.preventDefault();
+
+  var loginEmail = $.grep(
+    $('#login-form').serializeArray(),
+    function(element){ return element.name === "email"; })[0].value;
+  var loginPassword = $.grep(
+    $('#login-form').serializeArray(),
+    function(element){ return element.name === "password"; })[0].value;
+
+  $('#login-email-group').removeClass("has-error");
+  $('#login-form span.email-errors').text("");
+  $("#login-form input[type='hidden']").remove();
+
+  $.get("user?useremail="+loginEmail, function(existedUser) {
+    if (existedUser.length === 0) {
+      $('#login-email-group').addClass("has-error");
+      $('#login-form span.email-errors').text("這個帳號還沒被註冊過喔～");
+    } else {
+      $('<input />').attr('type', 'hidden')
+          .attr('name', "username")
+          .attr('value', existedUser[0].username)
+          .appendTo('#login-form');
+
+      $.post('rest-auth/login/', $('#login-form').serialize())
+        .fail(function(data){
+          $('#login-email-group').addClass("has-error");
+          $('#login-form span.email-errors').text("錯誤的密碼，請檢查你的輸入喔～");
+        })
+        .done(function(data){
+          location.reload();
+        });
     }
   });
 });
