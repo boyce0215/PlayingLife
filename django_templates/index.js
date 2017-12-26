@@ -60,9 +60,6 @@ $("button#login-button").click(function(event){
   var loginPassword = $.grep(
     $('#login-form').serializeArray(),
     function(element){ return element.name === "password"; })[0].value;
-
-  $('#login-email-group').removeClass("has-error");
-  $('#login-form span.email-errors').text("");
   $("#login-form input[type='hidden']").remove();
 
   $.get("user?useremail="+loginEmail, function(existedUser) {
@@ -85,6 +82,20 @@ $("button#login-button").click(function(event){
         });
     }
   });
+});
+
+$('#login-form #login-email').on('input',function(e){
+  $('#login-email-group').removeClass("has-error");
+  $('#login-password-group').removeClass("has-error");
+  $('#login-form span.email-errors').text("");
+  $('#login-form span.password-errors').text("");
+});
+
+$('#login-form #login-password').on('input',function(e){
+  $('#login-email-group').removeClass("has-error");
+  $('#login-password-group').removeClass("has-error");
+  $('#login-form span.email-errors').text("");
+  $('#login-form span.password-errors').text("");
 });
 
 function submitResetPassword() {
