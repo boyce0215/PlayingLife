@@ -35,6 +35,8 @@ nav.navbar {
     nav.navbar .navbar-nav .btn-custom:active {
       background-color: #60758d;
       color: #fff; }
+  /*nav.navbar #member {
+    display: none; }*/
     nav.navbar #member span {
       vertical-align: middle; }
     nav.navbar #member .count {
@@ -42,7 +44,7 @@ nav.navbar {
       font-size: 1.8rem;
       font-weight: bold; }
     nav.navbar #member #member-id {
-      color: #eee;
+      color: #777;
       margin-right: 8px; }
 
 header {

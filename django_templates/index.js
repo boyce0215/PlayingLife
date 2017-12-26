@@ -51,10 +51,7 @@ $("button#register-button").click(function(event){
   });
 });
 
-$("#password-reset-form button[type=submit]").click(function(event){
-  event.preventDefault();
-  $('#password-reset-form span.email-errors').text("");
-
+function submitResetPassword() {
   var resetEmail = $.grep(
     $('#password-reset-form').serializeArray(),
     function(element){ return element.name === "email"; })[0].value;
@@ -64,6 +61,9 @@ $("#password-reset-form button[type=submit]").click(function(event){
       $('#password-reset-form div.form-group').addClass("has-error");
       $('#password-reset-form span.email-errors').text("這個email沒有註冊過喔～");
     } else {
+      $('#password-reset-form span.email-errors').text("請稍候。。。");
+      // $("#password-reset-form #email").prop("disabled", true);
+
       var resetForm = $('#password-reset-form');
       $.post(resetForm.attr('action'), resetForm.serialize())
         .fail(function(data){
@@ -77,4 +77,27 @@ $("#password-reset-form button[type=submit]").click(function(event){
         });
     }
   });
+}
+
+
+$("#password-reset-form button[type=submit]").click(function(event){
+  event.preventDefault();
+  submitResetPassword();
+});
+
+$('#password-reset-form #email').on('input',function(e){
+  $('#password-reset-form div.form-group').removeClass("has-error");
+  $('#password-reset-form span.email-errors').text("");
+});
+
+$('#password-reset-form #email').keypress(function(e){
+  if(e.which == 13) {
+    e.preventDefault();
+    submitResetPassword();
+  }
+});
+
+$("#password-reset-form button[type=cancel]").click(function(event){
+  event.preventDefault();
+  $("#forget").modal("hide");
 });

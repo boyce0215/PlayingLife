@@ -26,7 +26,7 @@
       {% else %}
       <div id="member">
         <div class="nav navbar-nav">
-          <div class="navbar-text"><span>連續獲勝</span><span class="count">0</span><span>次</span></div>
+          <div class="navbar-text"><span>連續獲勝</span><span class="count">{{ win_times }}</span><span>次</span></div>
         </div>
         <div class="nav navbar-nav navbar-right"><span id="member-id">{{ user.email }}</span>
           <button class="btn btn-default navbar-btn btn-custom" id="logout-button" type="button">登出</button>
@@ -37,7 +37,7 @@
   </nav>
   <header id="banner">
     <div class="container text-center">
-      <h1 class="heading">讓我們成為你生活中的小確幸專訪</h1><br/>
+      <h1 class="heading">讓我們成為你生活中的小確幸</h1><br/>
       <p class="text font-sans">現在開始每天進來玩預測遊戲<br>連續猜對 5 次 直接送你大杯星巴克</p><a class="btn btn-default btn-custom" href="#play">馬上玩遊戲</a>
     </div>
   </header>
@@ -48,9 +48,11 @@
       <div class="row">
         <div class="col-sm-6 col-sm-offset-3 content">
           <h3 class="title">{{ current_betting.question }}</h3>
-          <p class="text">台灣指數不斷創新高，行情還能維持多久？</p>
-          <div class="view"></div>
-          {% if not is_joined %}
+          <p class="text">{{ current_betting.description }}</p>
+          <div class="view">
+            <img src= "{{ current_betting.image_link }}" />
+          </div>
+          {% if not is_current_joined %}
             {% if user.is_authenticated %}
             <button class="btn btn-default btn-custom answer-option" type="button" data-target="#alert" data-toggle="modal" value="option_first">{{ current_betting.option_first }}</button>
             <button class="btn btn-default btn-custom answer-option" type="button" data-target="#alert" data-toggle="modal" value="option_second">{{ current_betting.option_second }}</button>
@@ -59,27 +61,38 @@
             <button class="btn btn-default btn-custom answer-option" type="button" data-target="#login" data-toggle="modal" value="option_second">{{ current_betting.option_second }}</button>
             {% endif %}
           {% else %}
-            <div class="btn btn-default btn-answer">已選 <span id="select-answer">{{selected_answer}}</span></div>
+            <div class="btn btn-default btn-answer">已選 <span id="select-answer">{{selected_current_answer}}</span></div>
           {% endif %}
         </div>
       </div>
     </div>
   </section>
-  <section id="result">
-    <div class="container text-center">
-      <h2 class="heading">昨日預測戰積</h2>
-      <hr/>
-      <div class="row">
-        <div class="col-sm-6 col-sm-offset-3 content">
-          <h3 class="title">台積電(2330)明日收盤股價預測</h3>
-          <p class="text">台灣指數不斷創新高，行情還能維持多久？</p>
-          <div class="view"></div>
-          <div class="btn btn-default btn-answer">預測成功</div>
-          <div class="btn btn-default btn-answer">再接再厲</div>
+  {% if previous_betting %}
+    <section id="result">
+      <div class="container text-center">
+        <h2 class="heading">昨日預測戰積</h2>
+        <hr/>
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3 content">
+            <h3 class="title">{{ previous_betting.question }}</h3>
+            <p class="text">{{ previous_betting.description }}</p>
+            <div class="view">
+              <img src= "{{ previous_betting.image_link }}" />
+            </div>
+            {% if is_previous_joined %}
+              {% if is_previous_correct %}
+                <div class="btn btn-default btn-answer">預測成功</div>
+              {% else %}
+                <div class="btn btn-default btn-answer">再接再厲</div>
+              {% endif %}
+            {% else %}
+              <div class="btn btn-default btn-answer">啊可惜你沒玩</div>
+            {% endif %}
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  {% endif %}
   <div class="modal fade work-detail" id="login" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
