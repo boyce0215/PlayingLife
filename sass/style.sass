@@ -51,7 +51,7 @@ nav.navbar
       font-size: 1.8rem
       font-weight: bold
     #member-id
-      color: #eee
+      color: #777
       margin-right: 8px
 header
   background-image: url(../images/bg.jpg)
@@ -107,6 +107,10 @@ section#play,section#result
     width: 400px
     height: 300px
     margin: 0 auto
+    img
+      display: block
+      max-width: 100%
+      height: auto
   .btn-custom
     margin: 20px 22px
     padding: 16px 24px
@@ -142,7 +146,7 @@ section#play,section#result
       box-shadow: initial
 section#result
   padding-top: 10px
-#login,#register,#forget,#sent
+#login,#register,#forget,#sent,#reset-password
   .modal-content
     padding: 20px 40px
     a
@@ -177,7 +181,7 @@ section#result
     .btn-right
       float: right
     .highlight
-      display: block
+      // display: block
       margin: 20px auto
       color: #aaa
       font-size: 1.6rem
@@ -197,11 +201,11 @@ footer
   p
     margin-bottom: 0px
 @media screen and (min-width: 768px)
-  #login,#register,#forget,#sent
+  #login,#register,#forget,#sent,#reset-password
     .modal-dialog
-      margin: 245px auto
+      margin-top: 180px
   #alert
     .modal-dialog
-      margin: 165px auto
+      margin-top: 165px
 
     

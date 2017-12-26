@@ -19,7 +19,7 @@ body
   nav.navbar.navbar-default.navbar-fixed-top
     .container
       .navbar-header
-        a.navbar-brand <strong>PlayingLife</strong>
+        a.navbar-brand.tk-source-han-sans-traditional <strong>PlayingLife</strong>
       //- {% if not user.is_authenticated %}
       #visitors
         .nav.navbar-nav.navbar-right
@@ -41,7 +41,7 @@ body
       h1.heading 讓我們成為你生活中的小確幸
       br
       p.text.font-sans 現在開始每天進來玩預測遊戲<br>連續猜對 5 次 直接送你大杯星巴克
-      a.btn.btn-default.btn-custom(href="#play") 馬上玩遊戲
+      a.btn.btn-default.btn-custom#goto-play(href="#play") 馬上玩遊戲
   section#play
     .container.text-center
       h2.heading 玩預測請你喝星巴克，就是這麼簡單
@@ -157,6 +157,26 @@ body
           span <br>請依照指示重設密碼
           span.highlight <br>沒有收到密碼重設信嗎？
           button.btn.btn-default.btn-custom.btn-right(type="submit") 重設密碼
+  .modal.fade.work-detail#reset-password(role="dialog")
+    .modal-dialog
+      .modal-content
+        .modal-header
+          h4.modal-title 重設密碼
+        .modal-body
+          form
+            .form-group
+              .input-group
+                span.input-group-addon
+                  i.fas.fa-lock
+                input#password.form-control(placeholder="新密碼")
+              span.help-block.with-errors
+            .form-group
+              .input-group
+                span.input-group-addon
+                  i.fas.fa-lock
+                input#re-password.form-control(placeholder="確認新密碼")
+              span.help-block.with-errors
+            button.btn.btn-default.btn-block.btn-custom#goto-sent(type="submit") 重設密碼
   .modal.fade.work-detail#alert(role="dialog")
     .modal-dialog.modal-sm
       .modal-content

@@ -44,7 +44,7 @@ nav.navbar {
       font-size: 1.8rem;
       font-weight: bold; }
     nav.navbar #member #member-id {
-      color: #eee;
+      color: #777;
       margin-right: 8px; }
 
 header {
@@ -102,6 +102,10 @@ section#play, section#result {
     width: 400px;
     height: 300px;
     margin: 0 auto; }
+    section#play .view img, section#result .view img {
+      display: block;
+      max-width: 100%;
+      height: auto; }
   section#play .btn-custom, section#result .btn-custom {
     margin: 20px 22px;
     padding: 16px 24px;
@@ -137,39 +141,38 @@ section#play, section#result {
 section#result {
   padding-top: 10px; }
 
-#login .modal-content, #register .modal-content, #forget .modal-content, #sent .modal-content {
+#login .modal-content, #register .modal-content, #forget .modal-content, #sent .modal-content, #reset-password .modal-content {
   padding: 20px 40px; }
-  #login .modal-content a, #register .modal-content a, #forget .modal-content a, #sent .modal-content a {
+  #login .modal-content a, #register .modal-content a, #forget .modal-content a, #sent .modal-content a, #reset-password .modal-content a {
     float: right;
     margin-bottom: 15px; }
-#login .modal-header .modal-title, #register .modal-header .modal-title, #forget .modal-header .modal-title, #sent .modal-header .modal-title {
+#login .modal-header .modal-title, #register .modal-header .modal-title, #forget .modal-header .modal-title, #sent .modal-header .modal-title, #reset-password .modal-header .modal-title {
   font-size: 2.4rem;
   display: inline-block; }
-#login .modal-body .input-group-addon, #register .modal-body .input-group-addon, #forget .modal-body .input-group-addon, #sent .modal-body .input-group-addon {
+#login .modal-body .input-group-addon, #register .modal-body .input-group-addon, #forget .modal-body .input-group-addon, #sent .modal-body .input-group-addon, #reset-password .modal-body .input-group-addon {
   background-color: #FFF;
   border-right: 0px; }
-#login .modal-body .input-group, #register .modal-body .input-group, #forget .modal-body .input-group, #sent .modal-body .input-group {
+#login .modal-body .input-group, #register .modal-body .input-group, #forget .modal-body .input-group, #sent .modal-body .input-group, #reset-password .modal-body .input-group {
   margin-bottom: 15px; }
-#login .modal-body .form-control, #register .modal-body .form-control, #forget .modal-body .form-control, #sent .modal-body .form-control {
+#login .modal-body .form-control, #register .modal-body .form-control, #forget .modal-body .form-control, #sent .modal-body .form-control, #reset-password .modal-body .form-control {
   border-left: 0px;
   -webkit-box-shadow: none;
   box-shadow: none;
   padding-left: 0px; }
-  #login .modal-body .form-control:focus, #register .modal-body .form-control:focus, #forget .modal-body .form-control:focus, #sent .modal-body .form-control:focus {
+  #login .modal-body .form-control:focus, #register .modal-body .form-control:focus, #forget .modal-body .form-control:focus, #sent .modal-body .form-control:focus, #reset-password .modal-body .form-control:focus {
     border-color: #aaa; }
-#login .modal-body .context, #register .modal-body .context, #forget .modal-body .context, #sent .modal-body .context {
+#login .modal-body .context, #register .modal-body .context, #forget .modal-body .context, #sent .modal-body .context, #reset-password .modal-body .context {
   display: block;
   margin-bottom: 15px; }
-#login .modal-body .prompt, #register .modal-body .prompt, #forget .modal-body .prompt, #sent .modal-body .prompt {
+#login .modal-body .prompt, #register .modal-body .prompt, #forget .modal-body .prompt, #sent .modal-body .prompt, #reset-password .modal-body .prompt {
   display: block;
   text-align: right;
   margin-top: 15px; }
-#login .modal-body .btn-custom, #register .modal-body .btn-custom, #forget .modal-body .btn-custom, #sent .modal-body .btn-custom {
+#login .modal-body .btn-custom, #register .modal-body .btn-custom, #forget .modal-body .btn-custom, #sent .modal-body .btn-custom, #reset-password .modal-body .btn-custom {
   padding: 8px 64px; }
-#login .modal-body .btn-right, #register .modal-body .btn-right, #forget .modal-body .btn-right, #sent .modal-body .btn-right {
+#login .modal-body .btn-right, #register .modal-body .btn-right, #forget .modal-body .btn-right, #sent .modal-body .btn-right, #reset-password .modal-body .btn-right {
   float: right; }
-#login .modal-body .highlight, #register .modal-body .highlight, #forget .modal-body .highlight, #sent .modal-body .highlight {
-  display: block;
+#login .modal-body .highlight, #register .modal-body .highlight, #forget .modal-body .highlight, #sent .modal-body .highlight, #reset-password .modal-body .highlight {
   margin: 20px auto;
   color: #aaa;
   font-size: 1.6rem; }
@@ -191,10 +194,10 @@ footer {
     margin-bottom: 0px; }
 
 @media screen and (min-width: 768px) {
-  #login .modal-dialog, #register .modal-dialog, #forget .modal-dialog, #sent .modal-dialog {
-    margin: 245px auto; }
+  #login .modal-dialog, #register .modal-dialog, #forget .modal-dialog, #sent .modal-dialog, #reset-password .modal-dialog {
+    margin-top: 180px; }
 
   #alert .modal-dialog {
-    margin: 165px auto; } }
+    margin-top: 165px; } }
 
 /*# sourceMappingURL=style.css.map */

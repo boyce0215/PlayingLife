@@ -15,7 +15,7 @@
 <body>
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
-      <div class="navbar-header"><a class="navbar-brand"><strong>PlayingLife</strong></a></div>
+      <div class="navbar-header"><a class="navbar-brand tk-source-han-sans-traditional"><strong>PlayingLife</strong></a></div>
       {% if not user.is_authenticated %}
       <div id="visitors">
         <div class="nav navbar-nav navbar-right">
@@ -38,7 +38,7 @@
   <header id="banner">
     <div class="container text-center">
       <h1 class="heading">讓我們成為你生活中的小確幸</h1><br/>
-      <p class="text font-sans">現在開始每天進來玩預測遊戲<br>連續猜對 5 次 直接送你大杯星巴克</p><a class="btn btn-default btn-custom" href="#play">馬上玩遊戲</a>
+      <p class="text font-sans">現在開始每天進來玩預測遊戲<br>連續猜對 5 次 直接送你大杯星巴克</p><a class="btn btn-default btn-custom" id="goto-play" href="#play">馬上玩遊戲</a>
     </div>
   </header>
   <section id="play">
@@ -183,6 +183,30 @@
         </div>
         <div class="modal-body"><span>我們已經寄送一封重設密碼郵件至您的信箱<br></span><span id="sent-reset-email"></span><span><br>請依照指示重設密碼</span><span class="highlight"><br>沒有收到密碼重設信嗎？</span>
           <button class="btn btn-default btn-custom btn-right" type="submit">重設密碼</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade work-detail" id="reset-password" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">重設密碼</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <div class="input-group"><span class="input-group-addon"><i class="fas fa-lock"></i></span>
+                <input class="form-control" id="password" placeholder="新密碼"/>
+              </div><span class="help-block with-errors"></span>
+            </div>
+            <div class="form-group">
+              <div class="input-group"><span class="input-group-addon"><i class="fas fa-lock"></i></span>
+                <input class="form-control" id="re-password" placeholder="確認新密碼"/>
+              </div><span class="help-block with-errors"></span>
+            </div>
+            <button class="btn btn-default btn-block btn-custom" id="goto-sent" type="submit">重設密碼</button>
+          </form>
         </div>
       </div>
     </div>

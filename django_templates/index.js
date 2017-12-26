@@ -1,3 +1,8 @@
+$("#goto-play").click(function(){
+  $("html,body").animate({
+    scrollTop: 680
+  },1000);
+});
 $("#login #goto-register").click(function(){
   $("#login").modal("hide");
   $("#register").modal("show");
