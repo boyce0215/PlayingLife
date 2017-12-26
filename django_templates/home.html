@@ -109,9 +109,14 @@
               </div>
               <span class="help-block with-errors email-errors"></span>
             </div>
-            <div class="input-group"><span class="input-group-addon"><i class="fas fa-lock"></i></span>
+            <div class="form-group" id="login-password-group">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-lock"></i></span>
               <input type="password" name="password" maxlength="254" placeholder="密碼" class="form-control" id="login-password">
-            </div><a id="goto-forget" herf="#">忘記密碼?</a>
+              </div>
+              <span class="help-block with-errors password-errors"></span>
+              <a id="goto-forget" herf="#">忘記密碼?</a>
+            </div>
             <button class="btn btn-primary btn-block" type="submit" id="login-button">登入</button>
           </form>
         </div>

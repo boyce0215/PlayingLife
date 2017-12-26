@@ -77,8 +77,8 @@ $("button#login-button").click(function(event){
 
       $.post('rest-auth/login/', $('#login-form').serialize())
         .fail(function(data){
-          $('#login-email-group').addClass("has-error");
-          $('#login-form span.email-errors').text("錯誤的密碼，請檢查你的輸入喔～");
+          $('#login-password-group').addClass("has-error");
+          $('#login-form span.password-errors').text("錯誤的密碼，請檢查你的輸入喔～");
         })
         .done(function(data){
           location.reload();
