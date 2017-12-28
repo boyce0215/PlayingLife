@@ -9,17 +9,21 @@ a {
   text-decoration: none; }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: "source-han-sans-traditional", "source-han-serif-tc", serif; }
+  font-family: "source-han-serif-tc", serif; }
 
 .font-sans {
-  font-family: -apple-system, BlinkMacSystemFont, "Noto Sans", sans-serif; }
+  font-family: -apple-system, BlinkMacSystemFont, "source-han-sans-traditional", sans-serif;
+  font-weight: 300; }
 
 nav.navbar {
   background-color: #fff;
   border: 0px; }
   nav.navbar .navbar-brand {
     color: #60758d; }
+    nav.navbar .navbar-brand:hover {
+      color: #60758d; }
   nav.navbar .navbar-nav .btn-custom {
+    transition: 0.25s;
     border-radius: 20px;
     padding: 6px 26px;
     border-color: #60758d;
@@ -35,8 +39,6 @@ nav.navbar {
     nav.navbar .navbar-nav .btn-custom:active {
       background-color: #60758d;
       color: #fff; }
-/*  nav.navbar #member {
-    display: none; }*/
     nav.navbar #member span {
       vertical-align: middle; }
     nav.navbar #member .count {
@@ -58,11 +60,15 @@ header {
     padding: 200px 0px; }
   header .heading {
     font-size: 4rem;
-    color: #fff; }
+    color: #fff;
+    text-shadow: 0px 0px 10px #333; }
   header .text {
     font-size: 2rem;
-    color: #fff; }
+    font-weight: 300;
+    color: #fff;
+    text-shadow: 0px 0px 10px #333; }
   header .btn-custom {
+    transition: 0.25s;
     border-radius: 30px;
     padding: 16px 60px;
     font-size: 1.8rem;
@@ -80,7 +86,8 @@ section#play, section#result {
   padding: 60px 0; }
   section#play .heading, section#result .heading {
     font-size: 3rem;
-    color: #151719; }
+    color: #151719;
+    text-shadow: 0px 0px 10px #b5b5b5; }
   section#play hr, section#result hr {
     width: 50%;
     border-width: 1px 0;
@@ -93,10 +100,12 @@ section#play, section#result {
     padding: 20px; }
   section#play .title, section#result .title {
     color: #151719;
-    font-size: 2.4rem; }
+    font-size: 2.4rem;
+    text-shadow: 0px 0px 10px #b5b5b5; }
   section#play .text, section#result .text {
     color: #838383;
-    font-size: 1.4rem; }
+    font-size: 1.4rem;
+    text-shadow: 0px 0px 10px #c5c5c5; }
   section#play .view, section#result .view {
     background-color: #333;
     width: 400px;
@@ -106,6 +115,8 @@ section#play, section#result {
       display: block;
       max-width: 100%;
       height: auto; }
+  section#play .timer, section#result .timer {
+    font-size: 2.2rem; }
   section#play .btn-custom, section#result .btn-custom {
     margin: 20px 22px;
     padding: 16px 24px;
@@ -124,7 +135,7 @@ section#play, section#result {
     section#play .btn-custom:active, section#result .btn-custom:active {
       background-color: #60758d;
       color: #fff; }
-  section#play .btn-answer, section#result .btn-answer {
+  section#play .btn-answer, section#play .btn-timeout, section#result .btn-answer, section#result .btn-timeout {
     padding: 8px 24px;
     font-size: 1.8rem;
     margin: 20px 20px;
@@ -133,22 +144,30 @@ section#play, section#result {
     background-color: #2f4156;
     border-radius: 0px;
     cursor: default; }
-    section#play .btn-answer:focus, section#result .btn-answer:focus {
+    section#play .btn-answer:focus, section#play .btn-timeout:focus, section#result .btn-answer:focus, section#result .btn-timeout:focus {
       outline: none; }
-    section#play .btn-answer:active, section#result .btn-answer:active {
+    section#play .btn-answer:active, section#play .btn-timeout:active, section#result .btn-answer:active, section#result .btn-timeout:active {
       box-shadow: initial; }
 
 section#result {
   padding-top: 10px; }
 
 #login .modal-content, #register .modal-content, #forget .modal-content, #sent .modal-content, #reset-password .modal-content {
-  padding: 20px 40px; }
+  padding: 25px 40px; }
   #login .modal-content a, #register .modal-content a, #forget .modal-content a, #sent .modal-content a, #reset-password .modal-content a {
     float: right;
+    color: #4f77a5; }
+  #login .modal-content a#goto-register, #login .modal-content a#goto-login, #register .modal-content a#goto-register, #register .modal-content a#goto-login, #forget .modal-content a#goto-register, #forget .modal-content a#goto-login, #sent .modal-content a#goto-register, #sent .modal-content a#goto-login, #reset-password .modal-content a#goto-register, #reset-password .modal-content a#goto-login {
+    margin-top: 15px; }
+  #login .modal-content a#goto-forget, #register .modal-content a#goto-forget, #forget .modal-content a#goto-forget, #sent .modal-content a#goto-forget, #reset-password .modal-content a#goto-forget {
     margin-bottom: 15px; }
 #login .modal-header .modal-title, #register .modal-header .modal-title, #forget .modal-header .modal-title, #sent .modal-header .modal-title, #reset-password .modal-header .modal-title {
   font-size: 2.4rem;
   display: inline-block; }
+#login .modal-body .has-focus .input-group-addon, #register .modal-body .has-focus .input-group-addon, #forget .modal-body .has-focus .input-group-addon, #sent .modal-body .has-focus .input-group-addon, #reset-password .modal-body .has-focus .input-group-addon {
+  border-color: #538bde; }
+#login .modal-body .has-focus .form-control, #register .modal-body .has-focus .form-control, #forget .modal-body .has-focus .form-control, #sent .modal-body .has-focus .form-control, #reset-password .modal-body .has-focus .form-control {
+  border-color: #538bde; }
 #login .modal-body .input-group-addon, #register .modal-body .input-group-addon, #forget .modal-body .input-group-addon, #sent .modal-body .input-group-addon, #reset-password .modal-body .input-group-addon {
   background-color: #FFF;
   border-right: 0px; }
@@ -159,8 +178,8 @@ section#result {
   -webkit-box-shadow: none;
   box-shadow: none;
   padding-left: 0px; }
-  #login .modal-body .form-control:focus, #register .modal-body .form-control:focus, #forget .modal-body .form-control:focus, #sent .modal-body .form-control:focus, #reset-password .modal-body .form-control:focus {
-    border-color: #aaa; }
+#login .modal-body .help-block, #register .modal-body .help-block, #forget .modal-body .help-block, #sent .modal-body .help-block, #reset-password .modal-body .help-block {
+  margin: 0; }
 #login .modal-body .context, #register .modal-body .context, #forget .modal-body .context, #sent .modal-body .context, #reset-password .modal-body .context {
   display: block;
   margin-bottom: 15px; }
@@ -168,14 +187,26 @@ section#result {
   display: block;
   text-align: right;
   margin-top: 15px; }
+#login .modal-body .btn-primary, #register .modal-body .btn-primary, #forget .modal-body .btn-primary, #sent .modal-body .btn-primary, #reset-password .modal-body .btn-primary {
+  background-color: #4f77a5;
+  border-color: #4f77a5; }
 #login .modal-body .btn-custom, #register .modal-body .btn-custom, #forget .modal-body .btn-custom, #sent .modal-body .btn-custom, #reset-password .modal-body .btn-custom {
   padding: 8px 64px; }
+#login .modal-body .btn-cancel, #register .modal-body .btn-cancel, #forget .modal-body .btn-cancel, #sent .modal-body .btn-cancel, #reset-password .modal-body .btn-cancel {
+  background-color: #FFF;
+  color: #4f77a5; }
 #login .modal-body .btn-right, #register .modal-body .btn-right, #forget .modal-body .btn-right, #sent .modal-body .btn-right, #reset-password .modal-body .btn-right {
   float: right; }
 #login .modal-body .highlight, #register .modal-body .highlight, #forget .modal-body .highlight, #sent .modal-body .highlight, #reset-password .modal-body .highlight {
   margin: 20px auto;
   color: #aaa;
   font-size: 1.6rem; }
+
+#login #login-email-group .input-group, #login #login-password-group .input-group {
+  margin-bottom: 15px; }
+#login #login-email-group .help-block, #login #login-password-group .help-block {
+  margin-top: 0px;
+  margin-bottom: 0px; }
 
 #alert .answer {
   font-weight: bold;

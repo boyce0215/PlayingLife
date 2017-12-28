@@ -14,12 +14,13 @@ head
   //- link(rel="stylesheet" href="https://use.typekit.net/uyn6hce.css")
   script(defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js")
   script(src="https://use.typekit.net/uyn6hce.js")
-  script(try{Typekit.load({ async: true });}catch(e){})
+  script.
+    try{Typekit.load({ async: true });}catch(e){}
 body
-  nav.navbar.navbar-default.navbar-fixed-top
+  nav.navbar.navbar-default.navbar-fixed-top.font-sans
     .container
       .navbar-header
-        a.navbar-brand.tk-source-han-sans-traditional <strong>PlayingLife</strong>
+        a.navbar-brand <strong>PlayingLife</strong>
       //- {% if not user.is_authenticated %}
       #visitors
         .nav.navbar-nav.navbar-right
@@ -32,18 +33,22 @@ body
             span 連續獲勝
             span.count 0
             span 次
+          .navbar-text
+            span 獲得星巴克
+            span.count 0
+            span 杯
         .nav.navbar-nav.navbar-right
           span#member-id danney@comoney.com.tw
           button.btn.btn-default.navbar-btn.btn-custom#logout-button(type="button") 登出
       //- {% endif %}
   header#banner
-    .container.text-center
+    .container.text-center.font-sans
       h1.heading 讓我們成為你生活中的小確幸
       br
-      p.text.font-sans 現在開始每天進來玩預測遊戲<br>連續猜對 5 次 直接送你大杯星巴克
+      p.text 現在開始每天進來玩預測遊戲<br>連續猜對 3 次 直接送你大杯星巴克
       a.btn.btn-default.btn-custom#goto-play(href="#play") 馬上玩遊戲
   section#play
-    .container.text-center
+    .container.text-center.font-sans
       h2.heading 玩預測請你喝星巴克，就是這麼簡單
       hr
       .row
@@ -66,10 +71,13 @@ body
           //- {% endif %}
           button.btn.btn-default.btn-custom(type="button" data-target="#alert" data-toggle="modal") 明天收盤一定跌
           button.btn.btn-default.btn-custom(type="button" data-target="#alert" data-toggle="modal") 明天收盤一定漲
+          .timeout
+            .timer
+            .btn.btn-default.btn-timeout 已經不能預測囉
           .btn.btn-default.btn-answer 已選 
             span#select-answer 明天收盤一定漲
   section#result
-    .container.text-center
+    .container.text-center.font-sans
       h2.heading 昨日預測戰積
       hr
       .row
@@ -81,28 +89,32 @@ body
           .btn.btn-default.btn-answer 再接再厲
   .modal.fade.work-detail#login(role="dialog")
     .modal-dialog
-      .modal-content
+      .modal-content.font-sans
         .modal-header
           h4.modal-title 登入
           a#goto-register(herf="#") 還沒有帳號？前往註冊 >
         .modal-body
           form#login-form(method="post")
             //- {% csrf_token %}
-            .input-group
-              span.input-group-addon
-                i.fas.fa-envelope
-              input#email.form-control(placeholder="電子郵件")
-              //- {{ login_form.input_email }}
-            .input-group
-              span.input-group-addon
-                i.fas.fa-lock
-              input#password.form-control(placeholder="密碼")
-              //- {{ login_form.input_password }}
+            .form-group#login-email-group
+              .input-group
+                span.input-group-addon
+                  i.fas.fa-envelope
+                input#email.form-control(placeholder="電子郵件")
+                //- {{ login_form.input_email }}
+              span.help-block.with-errors
+            .form-group#login-passsword-group
+              .input-group
+                span.input-group-addon
+                  i.fas.fa-lock
+                input#password.form-control(placeholder="密碼")
+                //- {{ login_form.input_password }}
+              span.help-block.with-errors
             a#goto-forget(herf="#") 忘記密碼?
             button.btn.btn-primary.btn-block(type="submit" name="login_home" value="Login_Home") 登入
   .modal.fade.work-detail#register(role="dialog")
     .modal-dialog
-      .modal-content
+      .modal-content.font-sans
         .modal-header
           h4.modal-title 註冊
           a#goto-login(herf="#") 已經有帳號？登入 >
@@ -133,7 +145,7 @@ body
             button.btn.btn-primary.btn-block(type="submit" name="register_home" value="Register_Home") 註冊
   .modal.fade.work-detail#forget(role="dialog")
     .modal-dialog
-      .modal-content
+      .modal-content.font-sans
         .modal-header
           h4.modal-title 忘記密碼
         .modal-body
@@ -143,12 +155,12 @@ body
               span.input-group-addon
                 i.fas.fa-envelope
               input#email.form-control(placeholder="電子郵件")
-            button.btn.btn-default.btn-custom(type="cancel") 取消
-            button.btn.btn-default.btn-custom.btn-right#goto-sent(type="submit") 重設密碼
+            button.btn.btn-primary.btn-custom.btn-cancel(type="cancel") 取消
+            button.btn.btn-primary.btn-custom.btn-right#goto-sent(type="submit") 重設密碼
           span.prompt 電子郵件將在數分鐘後送達
   .modal.fade.work-detail#sent(role="dialog")
     .modal-dialog
-      .modal-content
+      .modal-content.font-sans
         .modal-header
           h4.modal-title 重設密碼郵件已發送
         .modal-body
@@ -156,10 +168,10 @@ body
           span danny@cmoney.com.tw
           span <br>請依照指示重設密碼
           span.highlight <br>沒有收到密碼重設信嗎？
-          button.btn.btn-default.btn-custom.btn-right(type="submit") 重設密碼
+          button.btn.btn-primary.btn-custom.btn-right(type="submit") 再寄一次
   .modal.fade.work-detail#reset-password(role="dialog")
     .modal-dialog
-      .modal-content
+      .modal-content.font-sans
         .modal-header
           h4.modal-title 重設密碼
         .modal-body
@@ -176,10 +188,11 @@ body
                   i.fas.fa-lock
                 input#re-password.form-control(placeholder="確認新密碼")
               span.help-block.with-errors
-            button.btn.btn-default.btn-block.btn-custom#goto-sent(type="submit") 重設密碼
+            button.btn.btn-primary.btn-custom.btn-cancel(type="cancel") 取消
+            button.btn.btn-primary.btn-custom.btn-right#goto-sent(type="submit") 重設密碼
   .modal.fade.work-detail#alert(role="dialog")
     .modal-dialog.modal-sm
-      .modal-content
+      .modal-content.font-sans
         .modal-body.text-center
           form#play-form(method="post")
             //- {% csrf_token %}
@@ -188,8 +201,8 @@ body
             p.text 台灣指數不斷創新高，行情還能維持多久？
             p.text 你選擇了
               span.answer 明天收盤一定跌
-            button.btn.btn-default.btn-custom.answer-select(type="cancel") 後悔了
-            button.btn.btn-default.btn-custom.answer-select(type="submit") 不後悔
+            button.btn.btn-primary.btn-custom.answer-select(type="cancel") 後悔了
+            button.btn.btn-primary.btn-custom.answer-select(type="submit") 不後悔
   footer
     .container
       p Copyright © 2017 test. All Rights Reserved.
