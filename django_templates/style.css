@@ -231,4 +231,7 @@ footer {
   #alert .modal-dialog {
     margin-top: 165px; } }
 
+#current-betting-countdown .btn-timeout {
+  display: none;
+}
 /*# sourceMappingURL=style.css.map */

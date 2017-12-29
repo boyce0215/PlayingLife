@@ -27,7 +27,7 @@
       <div id="member">
         <div class="nav navbar-nav">
           <div class="navbar-text"><span>連續獲勝</span><span class="count">{{ win_times }}</span><span>次</span></div>
-          <div class="navbar-text"><span>獲得星巴克</span><span class="count">0</span><span>杯</span></div>
+          <div class="navbar-text"><span>獲得星巴克</span><span class="count">{{ starbucks_cups }}</span><span>杯</span></div>
         </div>
         <div class="nav navbar-nav navbar-right"><span id="member-id">{{ user.email }}</span>
           <button class="btn btn-default navbar-btn btn-custom" id="logout-button" type="button">登出</button>
@@ -61,13 +61,13 @@
             <button class="btn btn-default btn-custom answer-option" type="button" data-target="#login" data-toggle="modal" value="option_first">{{ current_betting.option_first }}</button>
             <button class="btn btn-default btn-custom answer-option" type="button" data-target="#login" data-toggle="modal" value="option_second">{{ current_betting.option_second }}</button>
             {% endif %}
+            <div id="current-betting-countdown">
+              <div class="timer"></div>
+              <div class="btn btn-default btn-timeout">已經不能預測囉</div>
+            </div>
           {% else %}
             <div class="btn btn-default btn-answer">已選 <span id="select-answer">{{selected_current_answer}}</span></div>
           {% endif %}
-            <div class="timeout">
-              <div class="timer"></div>
-              <div class="btn btn-default btn-timeout">已經不能預測囉</div>
-          </div>
         </div>
       </div>
     </div>
@@ -192,26 +192,27 @@
       </div>
     </div>
   </div>
-  <div class="modal fade work-detail" id="reset-password" role="dialog">
+  <div class="modal fade work-detail" id="reset-password" data-backdrop="static" data-keyboard="false" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content font-sans">
         <div class="modal-header">
           <h4 class="modal-title">重設密碼</h4>
         </div>
         <div class="modal-body">
-          <form>
-            <div class="form-group">
+          <form id="password-reset-confirm-form" action="{% url 'rest_password_reset_confirm' %}">
+            {% csrf_token %}
+            <div class="form-group" id="reset-new-password1-group">
               <div class="input-group"><span class="input-group-addon"><i class="fas fa-lock"></i></span>
-                <input class="form-control" id="password" placeholder="新密碼"/>
-              </div><span class="help-block with-errors"></span>
+                <input class="form-control" type="password" name="new_password1" id="new_password1" placeholder="新密碼"/>
+              </div><span class="help-block with-errors password1-errors"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="reset-new-password2-group">
               <div class="input-group"><span class="input-group-addon"><i class="fas fa-lock"></i></span>
-                <input class="form-control" id="re-password" placeholder="確認新密碼"/>
-              </div><span class="help-block with-errors"></span>
+                <input class="form-control" type="password" name="new_password2" id="new_password2" placeholder="確認新密碼"/>
+              </div><span class="help-block with-errors password2-errors"></span>
             </div>
             <button class="btn btn-primary btn-custom btn-cancel" type="cancel">取消</button>
-            <button class="btn btn-primary btn-custom btn-right" id="goto-sent" type="submit">重設密碼</button>
+            <button class="btn btn-primary btn-custom btn-right" type="submit">重設密碼</button>
           </form>
         </div>
       </div>
@@ -223,8 +224,8 @@
         <div class="modal-body text-center">
           <form id="play-form" method="post">
             {% csrf_token %}
-            <h3 class="title">台積電(2330)明日收盤股價預測</h3>
-            <p class="text">台灣指數不斷創新高，行情還能維持多久？</p>
+            <h3 class="title">{{ current_betting.question }}</h3>
+            <p class="text">{{ current_betting.description }}</p>
             <p class="text">你選擇了<span class="answer" id="option-answer"></span></p>
             <button class="btn btn-default btn-custom answer-select" type="cancel">後悔了</button>
             <button class="btn btn-default btn-custom answer-select" type="submit">不後悔</button>

@@ -1,102 +1,3 @@
-/*倒數器開始*/
-var cset, countdown1 = {
-  settings: {
-    dateStart: new Date('Dec 28, 2017 00:00:00'),/*設定開始日期*/
-    dateEnd: new Date('Dec 29, 2017 00:00:00'),/*設定結束日期*/
-    elements: document.querySelectorAll(".timer"),/*設定哪一個選擇器*/
-    msgBefore: "活動已結束!",/*開始日期前會出現的內容*/
-    msgAfter: "活動未開始!",/*結束日期後會出現的內容*/
-    msgPattern: '<span> {hours} 小時 {minutes} 分  {seconds} 秒 後預測截止</span>',/*活動期間會出現的內容*/
-    patterns: [{
-      pattern: '{years}',
-      secs: 31536000,
-    }, {
-      pattern: '{months}',
-      secs: 2628000,
-    }, {
-      pattern: '{weeks}',
-      secs: 604800,
-    }, {
-      pattern: '{days}',
-      secs: 86400
-    }, {
-      pattern: '{hours}',
-      secs: 3600
-    }, {
-      pattern: '{minutes}',
-      secs: 60
-    }, {
-      pattern: '{seconds}',
-      secs: 1
-    }],
-    interval: 1000,
-    now: new Date()
-  },
-
-  init: function() {
-    cset = this.settings;
-    this.defineInterval();
-    cset.now < cset.dateEnd && cset.now > cset.dateStart ? this.run() : this.outOfInterval();
-  },
-
-  run: function() {
-    var nowTS = cset.now.valueOf() / 1000,
-      tarTS = cset.dateEnd.valueOf() / 1000,
-      sec = Math.abs(tarTS - nowTS);
-
-    var timer = setInterval(function() {
-      sec--;
-
-      if (sec > 0) {
-        countdown1.display(sec);
-
-      } else {
-        countdown1.outOfInterval();
-        clearInterval(timer);
-      }
-    }, cset.interval);
-
-    countdown1.display(sec);
-  },
-
-  defineInterval: function() {
-    for (var i = cset.patterns.length; i > 0; i--) {
-      var currentPattern = cset.patterns[i - 1];
-
-      if (cset.msgPattern.indexOf(currentPattern.pattern) !== -1) {
-        cset.interval = currentPattern.secs * 1000;
-        return;
-      }
-    }
-  },
-
-  display: function(sec) {
-    var output = cset.msgPattern;
-
-    for (var i = 0, len = cset.patterns.length; i < len; i++) {
-      var currentPattern = cset.patterns[i];
-
-      if (cset.msgPattern.indexOf(currentPattern.pattern) !== -1) {
-        var number = Math.floor(sec / currentPattern.secs);
-        sec -= number * currentPattern.secs;
-        output = output.replace(currentPattern.pattern, number);
-      }
-    }
-
-    for (var i = 0, len = cset.elements.length; i < len; i++)
-      cset.elements[i].innerHTML = output;
-  },
-
-  outOfInterval: function() {
-    var message = cset.now > cset.dateStart ? cset.msgBefore : cset.msgAfter;
-    for (var i = 0, len = cset.elements.length; i < len; i++)
-      cset.elements[i].innerHTML = message;
-  }
-}
-
-countdown1.init();
-/*倒數器結束*/
-
 $("#goto-play").click(function(){
   $("html,body").animate({
     scrollTop: 680
@@ -230,7 +131,6 @@ function submitResetPassword() {
   });
 }
 
-
 $("#password-reset-form button[type=submit]").click(function(event){
   event.preventDefault();
   submitResetPassword();
@@ -252,3 +152,113 @@ $("#password-reset-form button[type=cancel]").click(function(event){
   event.preventDefault();
   $("#forget").modal("hide");
 });
+
+$("#sent button[type=submit]").click(function(event){
+  event.preventDefault();
+  $.post($('#password-reset-form').attr('action'), $('#password-reset-form').serialize())
+    .always(function(data){
+      $("#sent").modal("hide");
+    });
+});
+
+
+/*倒數器開始*/
+var counterSetting, currentCountdown = {
+  settings: {
+    // dateStart: new Date('Dec 29, 2017 00:00:00'),設定開始日期
+    // dateEnd: new Date('Dec 30, 2017 03:00:00'),/*設定結束日期*/
+    dateStart: "",/*設定開始日期*/
+    dateEnd: "",/*設定結束日期*/
+    // elements: document.querySelectorAll(".timer"),/*設定哪一個選擇器*/
+    elements: $("#current-betting-countdown .timer"),/*設定哪一個選擇器*/
+    // msgBefore: "活動已結束!",/*開始日期前會出現的內容*/
+    // msgAfter: "活動未開始!",/*結束日期後會出現的內容*/
+    msgPattern: '<span> {hours} 小時 {minutes} 分  {seconds} 秒 後預測截止</span>',/*活動期間會出現的內容*/
+    patterns: [{
+      pattern: '{years}',
+      seconds: 31536000,
+    }, {
+      pattern: '{months}',
+      seconds: 2628000,
+    }, {
+      pattern: '{weeks}',
+      seconds: 604800,
+    }, {
+      pattern: '{days}',
+      seconds: 86400
+    }, {
+      pattern: '{hours}',
+      seconds: 3600
+    }, {
+      pattern: '{minutes}',
+      seconds: 60
+    }, {
+      pattern: '{seconds}',
+      seconds: 1
+    }],
+    interval: 1000,
+    now: new Date()
+  },
+
+  init: function() {
+    counterSetting = this.settings;
+
+    $.get("countdown-time/", function(data) {
+      counterSetting.dateStart = new Date(Date.parse(data.start_date));
+      counterSetting.dateEnd = new Date(Date.parse(data.end_date));
+      currentCountdown.defineInterval();
+      counterSetting.now < counterSetting.dateEnd && counterSetting.now > counterSetting.dateStart ? currentCountdown.run() : currentCountdown.outOfInterval();
+    });
+  },
+
+  run: function() {
+    var remainingSeconds = Math.abs(
+      (counterSetting.now.valueOf() - counterSetting.dateEnd.valueOf())/1000);
+    var timer = setInterval(function() {
+      --remainingSeconds;
+      if (remainingSeconds > 0) {
+        currentCountdown.display(remainingSeconds);
+      } else {
+        currentCountdown.outOfInterval();
+        clearInterval(timer);
+      }
+    }, counterSetting.interval);
+    currentCountdown.display(remainingSeconds);
+  },
+
+  defineInterval: function() {
+    for (var index = counterSetting.patterns.length; index > 0; index--) {
+      var currentPattern = counterSetting.patterns[index - 1];
+
+      if (counterSetting.msgPattern.indexOf(currentPattern.pattern) !== -1) {
+        counterSetting.interval = currentPattern.seconds * 1000;
+        return;
+      }
+    }
+  },
+
+  display: function(seconds) {
+    var output = counterSetting.msgPattern;
+    for (var index = 0; index < counterSetting.patterns.length; index++) {
+      var currentPattern = counterSetting.patterns[index];
+      if (counterSetting.msgPattern.indexOf(currentPattern.pattern) !== -1) {
+        var number = Math.floor(seconds / currentPattern.seconds);
+        seconds -= number * currentPattern.seconds;
+        output = output.replace(currentPattern.pattern, number);
+      }
+    }
+    for (var index = 0; index < counterSetting.elements.length; index++)
+      counterSetting.elements[index].innerHTML = output;
+  },
+
+  outOfInterval: function() {
+    // var message = counterSetting.now > counterSetting.dateStart ? counterSetting.msgBefore : counterSetting.msgAfter;
+    // for (var index = 0; index < counterSetting.elements.length; index++)
+    //   counterSetting.elements[index].innerHTML = message;
+    $("#current-betting-countdown .btn-timeout").css('display', 'inline-block');
+    $("button.answer-option").hide();
+  }
+}
+
+currentCountdown.init();
+/*倒數器結束*/
