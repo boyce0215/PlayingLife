@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="{% static 'css/normalize.css' %}"/>
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
   <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+  <link rel="stylesheet" href="{% static 'css/custom.css' %}"/>
   <script defer="defer" src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
   <script src="https://use.typekit.net/uyn6hce.js"></script>
   <script>try{Typekit.load({ async: true });}catch(e){}</script>
@@ -53,11 +54,11 @@
           </div>
           {% if not is_current_joined %}
             {% if user.is_authenticated %}
-            <button class="btn btn-default btn-custom answer-option" type="button" data-target="#alert" data-toggle="modal" value="option_first">{{ current_betting.option_first }}</button>
-            <button class="btn btn-default btn-custom answer-option" type="button" data-target="#alert" data-toggle="modal" value="option_second">{{ current_betting.option_second }}</button>
+              <button class="btn btn-default btn-custom answer-option" type="button" data-target="#alert" data-toggle="modal" value="option_first">{{ current_betting.option_first }}</button>
+              <button class="btn btn-default btn-custom answer-option" type="button" data-target="#alert" data-toggle="modal" value="option_second">{{ current_betting.option_second }}</button>
             {% else %}
-            <button class="btn btn-default btn-custom answer-option" type="button" data-target="#login" data-toggle="modal" value="option_first">{{ current_betting.option_first }}</button>
-            <button class="btn btn-default btn-custom answer-option" type="button" data-target="#login" data-toggle="modal" value="option_second">{{ current_betting.option_second }}</button>
+              <button class="btn btn-default btn-custom answer-option" type="button" data-target="#login" data-toggle="modal" value="option_first">{{ current_betting.option_first }}</button>
+              <button class="btn btn-default btn-custom answer-option" type="button" data-target="#login" data-toggle="modal" value="option_second">{{ current_betting.option_second }}</button>
             {% endif %}
             <div id="current-betting-countdown">
               <div class="timer"></div>

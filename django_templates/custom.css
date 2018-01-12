@@ -1,0 +1,10 @@
+nav.navbar #member {
+  display: block; }
+
+#current-betting-countdown .btn-timeout {
+  display: none;
+}
+
+section#play .view, section#result .view, section#rank .view {
+  background-image: none;
+}
