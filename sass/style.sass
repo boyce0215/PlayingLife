@@ -88,9 +88,9 @@ header
       background-color: #ec3d3d
       color: #fff
       border-color: #ec3d3d
-section#play,section#result
+section#play,section#result,section#rank
   background-color: #F2F2F2
-  padding: 60px 0
+  padding: 40px 0
   .heading
     font-size: 3.0rem
     color: #151719
@@ -102,22 +102,33 @@ section#play,section#result
     border-color: #e3e3e3
     height: 4px
     margin-bottom: 40px
-  .content
-    background-color: #FFF
-    padding: 20px
   .title
-    color: #151719
+    color: #fff
     font-size: 2.4rem
-    text-shadow: 0px 0px 10px #b5b5b5
+    position: absolute
+    z-index: 3
+    bottom: 48px
+    left: 50%
+    transform: translateX(-50%)
+    // text-shadow: 0px 0px 10px #b5b5b5
   .text
-    color: #838383
+    color: #fff
     font-size: 1.4rem
-    text-shadow: 0px 0px 10px #c5c5c5
+    position: absolute
+    z-index: 3
+    bottom: 20px
+    left: 50%
+    transform: translateX(-50%)
+    // text-shadow: 0px 0px 10px #c5c5c5
   .view
-    background-color: #333
-    width: 400px
-    height: 300px
+    // background-color: #333
+    background-image: url("https://i.imgur.com/SoJiRpk.gif")
+    background-size: 100%
+    background-repeat: no-repeat
+    width: 920px
+    height: 480px
     margin: 0 auto
+    position: relative
     img
       display: block
       max-width: 100%
@@ -159,6 +170,23 @@ section#play,section#result
       box-shadow: initial
 section#result
   padding-top: 10px
+section#rank
+  .content
+    background-color: #FFF
+    padding: 20px
+  .order
+    width: 40px
+    height: 40px
+    border-radius: 100%
+    color: #fff
+    border: none
+    background-color: #dab413
+    &::before
+      content: counter(ranking)
+      counter-increment: ranking
+      font-size: 2.4rem
+
+
 #login,#register,#forget,#sent,#reset-password
   .modal-content
     padding: 25px 40px

@@ -45,13 +45,12 @@
   <section id="play">
     <div class="container text-center font-sans">
       <h2 class="heading">玩預測請你喝星巴克，就是這麼簡單</h2>
-      <hr/>
       <div class="row">
-        <div class="col-sm-6 col-sm-offset-3 content">
-          <h3 class="title">{{ current_betting.question }}</h3>
-          <p class="text">{{ current_betting.description }}</p>
+        <div class="col-sm-12 content">
           <div class="view">
             <img src= "{{ current_betting.image_link }}" />
+            <h3 class="title">{{ current_betting.question }}</h3>
+            <p class="text">{{ current_betting.description }}</p>
           </div>
           {% if not is_current_joined %}
             {% if user.is_authenticated %}
@@ -78,11 +77,11 @@
         <h2 class="heading">昨日預測戰積</h2>
         <hr/>
         <div class="row">
-          <div class="col-sm-6 col-sm-offset-3 content">
-            <h3 class="title">{{ previous_betting.question }}</h3>
-            <p class="text">{{ previous_betting.description }}</p>
+          <div class="col-sm-12 content">
             <div class="view">
               <img src= "{{ previous_betting.image_link }}" />
+              <h3 class="title">{{ previous_betting.question }}</h3>
+              <p class="text">{{ previous_betting.description }}</p>
             </div>
             {% if is_previous_joined %}
               {% if is_previous_correct %}

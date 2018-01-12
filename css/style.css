@@ -83,43 +83,51 @@ header {
       color: #fff;
       border-color: #ec3d3d; }
 
-section#play, section#result {
+section#play, section#result, section#rank {
   background-color: #F2F2F2;
-  padding: 60px 0; }
-  section#play .heading, section#result .heading {
+  padding: 40px 0; }
+  section#play .heading, section#result .heading, section#rank .heading {
     font-size: 3rem;
     color: #151719;
     text-shadow: 0px 0px 10px #b5b5b5; }
-  section#play hr, section#result hr {
+  section#play hr, section#result hr, section#rank hr {
     width: 50%;
     border-width: 1px 0;
     border-style: solid;
     border-color: #e3e3e3;
     height: 4px;
     margin-bottom: 40px; }
-  section#play .content, section#result .content {
-    background-color: #FFF;
-    padding: 20px; }
-  section#play .title, section#result .title {
-    color: #151719;
+  section#play .title, section#result .title, section#rank .title {
+    color: #fff;
     font-size: 2.4rem;
-    text-shadow: 0px 0px 10px #b5b5b5; }
-  section#play .text, section#result .text {
-    color: #838383;
+    position: absolute;
+    z-index: 3;
+    bottom: 48px;
+    left: 50%;
+    transform: translateX(-50%); }
+  section#play .text, section#result .text, section#rank .text {
+    color: #fff;
     font-size: 1.4rem;
-    text-shadow: 0px 0px 10px #c5c5c5; }
-  section#play .view, section#result .view {
-    background-color: #333;
-    width: 400px;
-    height: 300px;
-    margin: 0 auto; }
-    section#play .view img, section#result .view img {
+    position: absolute;
+    z-index: 3;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%); }
+  section#play .view, section#result .view, section#rank .view {
+    background-image: url("https://i.imgur.com/SoJiRpk.gif");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 920px;
+    height: 480px;
+    margin: 0 auto;
+    position: relative; }
+    section#play .view img, section#result .view img, section#rank .view img {
       display: block;
       max-width: 100%;
       height: auto; }
-  section#play .timer, section#result .timer {
+  section#play .timer, section#result .timer, section#rank .timer {
     font-size: 2.2rem; }
-  section#play .btn-custom, section#result .btn-custom {
+  section#play .btn-custom, section#result .btn-custom, section#rank .btn-custom {
     margin: 20px 22px;
     padding: 16px 24px;
     font-size: 1.8rem;
@@ -127,17 +135,17 @@ section#play, section#result {
     color: #fff;
     background-color: #4f77a5;
     border-radius: 30px; }
-    section#play .btn-custom:hover, section#result .btn-custom:hover {
+    section#play .btn-custom:hover, section#result .btn-custom:hover, section#rank .btn-custom:hover {
       background-color: #538bde;
       color: #fff; }
-    section#play .btn-custom:focus, section#result .btn-custom:focus {
+    section#play .btn-custom:focus, section#result .btn-custom:focus, section#rank .btn-custom:focus {
       outline: none;
       color: #fff;
       background-color: #4f77a5; }
-    section#play .btn-custom:active, section#result .btn-custom:active {
+    section#play .btn-custom:active, section#result .btn-custom:active, section#rank .btn-custom:active {
       background-color: #60758d;
       color: #fff; }
-  section#play .btn-answer, section#play .btn-timeout, section#result .btn-answer, section#result .btn-timeout {
+  section#play .btn-answer, section#play .btn-timeout, section#result .btn-answer, section#result .btn-timeout, section#rank .btn-answer, section#rank .btn-timeout {
     padding: 8px 24px;
     font-size: 1.8rem;
     margin: 20px 20px;
@@ -146,13 +154,28 @@ section#play, section#result {
     background-color: #2f4156;
     border-radius: 0px;
     cursor: default; }
-    section#play .btn-answer:focus, section#play .btn-timeout:focus, section#result .btn-answer:focus, section#result .btn-timeout:focus {
+    section#play .btn-answer:focus, section#play .btn-timeout:focus, section#result .btn-answer:focus, section#result .btn-timeout:focus, section#rank .btn-answer:focus, section#rank .btn-timeout:focus {
       outline: none; }
-    section#play .btn-answer:active, section#play .btn-timeout:active, section#result .btn-answer:active, section#result .btn-timeout:active {
+    section#play .btn-answer:active, section#play .btn-timeout:active, section#result .btn-answer:active, section#result .btn-timeout:active, section#rank .btn-answer:active, section#rank .btn-timeout:active {
       box-shadow: initial; }
 
 section#result {
   padding-top: 10px; }
+
+section#rank .content {
+  background-color: #FFF;
+  padding: 20px; }
+section#rank .order {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  color: #fff;
+  border: none;
+  background-color: #dab413; }
+  section#rank .order::before {
+    content: counter(ranking);
+    counter-increment: ranking;
+    font-size: 2.4rem; }
 
 #login .modal-content, #register .modal-content, #forget .modal-content, #sent .modal-content, #reset-password .modal-content {
   padding: 25px 40px; }
