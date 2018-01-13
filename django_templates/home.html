@@ -73,6 +73,9 @@
             <div class="btn btn-default btn-answer">已選 <span id="select-answer">{{selected_current_answer}}</span></div>
           {% endif %}
         </div>
+        <div class="col-sm-12 content">
+          {{current_players}}人已預測
+        </div>
       </div>
     </div>
   </section>
@@ -96,6 +99,9 @@
             {% else %}
               <div class="btn btn-default btn-answer">啊可惜你沒玩</div>
             {% endif %}
+          </div>
+          <div class="col-sm-12 content">
+            {{previous_players}}人已預測
           </div>
         </div>
       </div>
