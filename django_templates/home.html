@@ -1,256 +1,273 @@
 <!DOCTYPE html>
-<html lang="zh-hant-tw"></html>
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-  <title>PlayingLife</title>
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'css/normalize.css' %}"/>
-  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
-  <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
-  <link rel="stylesheet" href="{% static 'css/custom.css' %}"/>
-  <script defer="defer" src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
-  <script src="https://use.typekit.net/uyn6hce.js"></script>
-  <script>try{Typekit.load({ async: true });}catch(e){}</script>
-</head>
-<body>
-  <nav class="navbar navbar-default navbar-fixed-top font-sans">
-    <div class="container">
-      <div class="navbar-header"><a class="navbar-brand"><strong>PlayingLife</strong></a></div>
-      {% if not user.is_authenticated %}
-      <div id="visitors">
-        <div class="nav navbar-nav navbar-right">
-          <button class="btn btn-default navbar-btn btn-custom" type="button" data-target="#login" data-toggle="modal">登入</button>
-          <button class="btn btn-default navbar-btn btn-custom" type="button" data-target="#register" data-toggle="modal">註冊</button>
-        </div>
-      </div>
-      {% else %}
-      <div id="member">
-        <div class="nav navbar-nav">
-          <div class="navbar-text"><span>連續獲勝</span><span class="count">{{ win_times }}</span><span>次</span></div>
-          <div class="navbar-text"><span>獲得星巴克</span><span class="count">{{ starbucks_cups }}</span><span>杯</span></div>
-          {% if not starbucks_cups %}
-            <div class="navbar-text" >
-              <a target="_blank" href="https://www.facebook.com/PlayingLife-遊戲人生-305766963160804/">密我領獎囉</a>
-            </div>
-          {% endif %}
-        </div>
-        <div class="nav navbar-nav navbar-right"><span id="member-id">{{ user.email }}</span>
-          <button class="btn btn-default navbar-btn btn-custom" id="logout-button" type="button">登出</button>
-        </div>
-      </div>
-      {% endif %}
-    </div>
-  </nav>
-  <header id="banner">
-    <div class="container text-center font-sans">
-      <h1 class="heading">讓我們成為你生活中的小確幸</h1><br/>
-      <p class="text">現在開始每天進來玩預測遊戲<br>連續猜對 3 次 直接送你大杯星巴克</p><a class="btn btn-default btn-custom" id="goto-play" href="#play">馬上玩遊戲</a>
-    </div>
-  </header>
-  <section id="play">
-    <div class="container text-center font-sans">
-      <h2 class="heading">玩預測請你喝星巴克，就是這麼簡單</h2>
-      <div class="row">
-        <div class="col-sm-12 content">
-          <div class="view" style="background-image: url({{ current_betting.image_link }})">
-            <h3 class="title">{{ current_betting.question }}</h3>
-            <p class="text">{{ current_betting.description }}</p>
+<html lang="zh-hant-tw">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <title>PlayingLife</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="images/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="images/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="images/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+    <script defer="defer" src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
+    <script src="https://use.typekit.net/uyn6hce.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top font-sans">
+      <div class="container">
+        <div class="navbar-header"><a class="navbar-brand"><strong>PlayingLife</strong></a></div>
+        {% if not user.is_authenticated %}
+        <div id="visitors">
+          <div class="nav navbar-nav navbar-right">
+            <button class="btn btn-default navbar-btn btn-custom" type="button" data-target="#login" data-toggle="modal">登入</button>
+            <button class="btn btn-default navbar-btn btn-custom" type="button" data-target="#register" data-toggle="modal">註冊</button>
           </div>
-          {% if not is_current_joined %}
-            {% if user.is_authenticated %}
-              <button class="btn btn-default btn-custom answer-option" type="button" data-target="#alert" data-toggle="modal" value="option_first">{{ current_betting.option_first }}</button>
-              <button class="btn btn-default btn-custom answer-option" type="button" data-target="#alert" data-toggle="modal" value="option_second">{{ current_betting.option_second }}</button>
-            {% else %}
-              <button class="btn btn-default btn-custom answer-option" type="button" data-target="#login" data-toggle="modal" value="option_first">{{ current_betting.option_first }}</button>
-              <button class="btn btn-default btn-custom answer-option" type="button" data-target="#login" data-toggle="modal" value="option_second">{{ current_betting.option_second }}</button>
+        </div>
+        {% else %}
+        <div id="member">
+          <div class="nav navbar-nav">
+            <div class="navbar-text"><span>連續獲勝</span><span class="count">{{ win_times }}</span><span>次</span></div>
+            <div class="navbar-text"><span>獲得星巴克</span><span class="count">{{ starbucks_cups }}</span><span>杯</span></div>
+            {% if not starbucks_cups %}
+              <div class="navbar-text" >
+                <a target="_blank" href="https://www.facebook.com/PlayingLife-遊戲人生-305766963160804/">密我領獎囉</a>
+              </div>
             {% endif %}
-            <div id="current-betting-countdown">
-              <div class="timer"></div>
-              <div class="btn btn-default btn-timeout">已經不能預測囉</div>
-            </div>
-          {% else %}
-            <div class="btn btn-default btn-answer">已選 <span id="select-answer">{{selected_current_answer}}</span></div>
-          {% endif %}
+          </div>
+          <div class="nav navbar-nav navbar-right"><span id="member-id">{{ user.email }}</span>
+            <button class="btn btn-default navbar-btn btn-custom" id="logout-button" type="button">登出</button>
+          </div>
         </div>
-        <div class="col-sm-12 content">
-          {{current_players}}人已預測
-        </div>
+        {% endif %}
       </div>
-    </div>
-  </section>
-  {% if previous_betting %}
-    <section id="result">
+    </nav>
+    <header id="banner">
       <div class="container text-center font-sans">
-        <h2 class="heading">昨日預測戰積</h2>
-        <hr/>
+        <h1 class="heading">讓我們成為你生活中的小確幸</h1><br/>
+        <p class="text">現在開始每天進來玩預測遊戲<br>連續猜對 3 次 直接送你大杯星巴克</p><a class="btn btn-default btn-custom" id="goto-play" href="#play">馬上玩遊戲</a>
+      </div>
+    </header>
+    <section id="play">
+      <div class="container text-center font-sans">
+        <h2 class="heading">玩預測請你喝星巴克，就是這麼簡單</h2>
         <div class="row">
           <div class="col-sm-12 content">
-            <div class="view" style="background-image: url({{ previous_betting.image_link }})">
-              <h3 class="title">{{ previous_betting.question }}</h3>
-              <p class="text">{{ previous_betting.description }}</p>
+            <div class="view" style="background-image: url({{ current_betting.image_link }})">
+              <h3 class="title">{{ current_betting.question }}</h3>
+              <p class="text">{{ current_betting.description }}</p>
             </div>
-            {% if is_previous_joined %}
-              {% if is_previous_correct %}
-                <div class="btn btn-default btn-answer">預測成功</div>
+            {% if not is_current_joined %}
+              {% if user.is_authenticated %}
+                <button class="btn btn-default btn-custom answer-option" type="button" data-target="#alert" data-toggle="modal" value="option_first">{{ current_betting.option_first }}</button>
+                <button class="btn btn-default btn-custom answer-option" type="button" data-target="#alert" data-toggle="modal" value="option_second">{{ current_betting.option_second }}</button>
               {% else %}
-                <div class="btn btn-default btn-answer">再接再厲</div>
+                <button class="btn btn-default btn-custom answer-option" type="button" data-target="#login" data-toggle="modal" value="option_first">{{ current_betting.option_first }}</button>
+                <button class="btn btn-default btn-custom answer-option" type="button" data-target="#login" data-toggle="modal" value="option_second">{{ current_betting.option_second }}</button>
               {% endif %}
+              <div id="current-betting-countdown">
+                <div class="timer"></div>
+                <div class="btn btn-default btn-timeout">已經不能預測囉</div>
+              </div>
             {% else %}
-              <div class="btn btn-default btn-answer">啊可惜你沒玩</div>
+              <div class="btn btn-default btn-answer">已選 <span id="select-answer">{{selected_current_answer}}</span></div>
             {% endif %}
           </div>
           <div class="col-sm-12 content">
-            {{previous_players}}人已預測
+            {{current_players}}人已預測
           </div>
         </div>
       </div>
     </section>
-  {% endif %}
-  <div class="modal fade work-detail" id="login" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content font-sans">
-        <div class="modal-header">
-          <h4 class="modal-title">登入</h4><a id="goto-register" herf="#">還沒有帳號？前往註冊 ></a>
-        </div>
-        <div class="modal-body">
-          <form id="login-form" method="post">
-            {% csrf_token %}
-            <div class="form-group" id="login-email-group">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-envelope"></i></span>
-                <input type="text" name="email" maxlength="254" placeholder="電子郵件" class="form-control" id="login-email">
+    {% if previous_betting %}
+      <section id="result">
+        <div class="container text-center font-sans">
+          <h2 class="heading">昨日預測戰積</h2>
+          <hr/>
+          <div class="row">
+            <div class="col-sm-12 content">
+              <div class="view" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.7)),url({{ previous_betting.image_link }})">
+                <h3 class="title">{{ previous_betting.question }}</h3>
+                <p class="text">{{ previous_betting.description }}</p>
               </div>
-              <span class="help-block with-errors email-errors"></span>
+              {% if is_previous_joined %}
+                {% if is_previous_correct %}
+                  <div class="btn btn-default btn-answer">預測成功</div>
+                {% else %}
+                  <div class="btn btn-default btn-answer">再接再厲</div>
+                {% endif %}
+              {% else %}
+                <div class="btn btn-default btn-answer">啊可惜你沒玩</div>
+              {% endif %}
             </div>
-            <div class="form-group" id="login-password-group">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-lock"></i></span>
-              <input type="password" name="password" maxlength="254" placeholder="密碼" class="form-control" id="login-password">
+            <div class="col-sm-12 content">
+              {{previous_players}}人已預測
+            </div>
+          </div>
+        </div>
+      </section>
+    {% endif %}
+    <div class="modal fade work-detail" id="login" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content font-sans">
+          <div class="modal-header">
+            <h4 class="modal-title">登入</h4><a id="goto-register" herf="#">還沒有帳號？前往註冊 ></a>
+          </div>
+          <div class="modal-body">
+            <form id="login-form" method="post">
+              {% csrf_token %}
+              <div class="form-group" id="login-email-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fas fa-envelope"></i></span>
+                  <input type="text" name="email" maxlength="254" placeholder="電子郵件" class="form-control" id="login-email">
+                </div>
+                <span class="help-block with-errors email-errors"></span>
               </div>
-              <span class="help-block with-errors password-errors"></span>
-              <a id="goto-forget" herf="#">忘記密碼?</a>
-            </div>
-            <button class="btn btn-primary btn-block" type="submit" id="login-button">登入</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade work-detail" id="register" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content font-sans">
-        <div class="modal-header">
-          <h4 class="modal-title">註冊</h4><a id="goto-login" herf="#">已經有帳號？登入 ></a>
-        </div>
-        <div class="modal-body">
-          <form id="register-form" data-toggle="validator" role="form" method="post">
-            {% csrf_token %}
-            <div class="form-group" id="register-email-group">
-              <div class="input-group"><span class="input-group-addon"><i class="fas fa-envelope"></i></span>
-                 {{ register_form.email }}
-              </div><span class="help-block with-errors email-errors"></span>
-            </div>
-            <div class="form-group">
-              <div class="input-group"><span class="input-group-addon"><i class="fas fa-lock"></i></span>
-                {{ register_form.password1 }}
-              </div><span class="help-block with-errors"></span>
-            </div>
-            <div class="form-group">
-              <div class="input-group"><span class="input-group-addon"><i class="fas fa-lock"></i></span>
-                {{ register_form.password2 }}
-              </div><span class="help-block with-errors"></span>
-            </div>
-            <button class="btn btn-primary btn-block" type="submit" id="register-button">註冊</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade work-detail" id="forget" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content font-sans">
-        <div class="modal-header">
-          <h4 class="modal-title">忘記密碼</h4>
-        </div>
-        <div class="modal-body"><span class="context">請輸入註冊時設定的電子郵件帳號<br>我們將寄送一封電子郵件協助您重設密碼</span>
-          <form id="password-reset-form" method="post" action="{% url 'rest_password_reset' %}">
-            {% csrf_token %}
-            <div class="form-group">
-              <div class="input-group"><span class="input-group-addon"><i class="fas fa-envelope"></i></span>
-                <input class="form-control" name="email" id="email" placeholder="電子郵件"/>
+              <div class="form-group" id="login-password-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fas fa-lock"></i></span>
+                <input type="password" name="password" maxlength="254" placeholder="密碼" class="form-control" id="login-password">
+                </div>
+                <span class="help-block with-errors password-errors"></span>
+                <a id="goto-forget" herf="#">忘記密碼?</a>
               </div>
-              <span class="help-block with-errors email-errors"></span>
-            </div>
-            <button class="btn btn-default btn-custom btn-cancel" type="cancel">取消</button>
-            <button class="btn btn-default btn-custom btn-right" id="goto-sent" type="submit">重設密碼</button>
-          </form><span class="prompt">電子郵件將在數分鐘後送達</span>
+              <button class="btn btn-primary btn-block" type="submit" id="login-button">登入</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="modal fade work-detail" id="sent" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content font-sans">
-        <div class="modal-header">
-          <h4 class="modal-title">重設密碼郵件已發送</h4>
-        </div>
-        <div class="modal-body"><span>我們已經寄送一封重設密碼郵件至您的信箱<br></span><span id="sent-reset-email"></span><span><br>請依照指示重設密碼</span><span class="highlight"><br>沒有收到密碼重設信嗎？</span>
-          <button class="btn btn-default btn-custom btn-right" type="submit">再寄一次</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade work-detail" id="reset-password" data-backdrop="static" data-keyboard="false" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content font-sans">
-        <div class="modal-header">
-          <h4 class="modal-title">重設密碼</h4>
-        </div>
-        <div class="modal-body">
-          <form id="password-reset-confirm-form" action="{% url 'rest_password_reset_confirm' %}">
-            {% csrf_token %}
-            <div class="form-group" id="reset-new-password1-group">
-              <div class="input-group"><span class="input-group-addon"><i class="fas fa-lock"></i></span>
-                <input class="form-control" type="password" name="new_password1" id="new_password1" placeholder="新密碼"/>
-              </div><span class="help-block with-errors password1-errors"></span>
-            </div>
-            <div class="form-group" id="reset-new-password2-group">
-              <div class="input-group"><span class="input-group-addon"><i class="fas fa-lock"></i></span>
-                <input class="form-control" type="password" name="new_password2" id="new_password2" placeholder="確認新密碼"/>
-              </div><span class="help-block with-errors password2-errors"></span>
-            </div>
-            <button class="btn btn-primary btn-custom btn-cancel" type="cancel">取消</button>
-            <button class="btn btn-primary btn-custom btn-right" type="submit">重設密碼</button>
-          </form>
+    <div class="modal fade work-detail" id="register" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content font-sans">
+          <div class="modal-header">
+            <h4 class="modal-title">註冊</h4><a id="goto-login" herf="#">已經有帳號？登入 ></a>
+          </div>
+          <div class="modal-body">
+            <form id="register-form" data-toggle="validator" role="form" method="post">
+              {% csrf_token %}
+              <div class="form-group" id="register-email-group">
+                <div class="input-group"><span class="input-group-addon"><i class="fas fa-envelope"></i></span>
+                   {{ register_form.email }}
+                </div><span class="help-block with-errors email-errors"></span>
+              </div>
+              <div class="form-group">
+                <div class="input-group"><span class="input-group-addon"><i class="fas fa-lock"></i></span>
+                  {{ register_form.password1 }}
+                </div><span class="help-block with-errors"></span>
+              </div>
+              <div class="form-group">
+                <div class="input-group"><span class="input-group-addon"><i class="fas fa-lock"></i></span>
+                  {{ register_form.password2 }}
+                </div><span class="help-block with-errors"></span>
+              </div>
+              <button class="btn btn-primary btn-block" type="submit" id="register-button">註冊</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="modal fade work-detail" id="alert" role="dialog">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content font-sans">
-        <div class="modal-body text-center">
-          <form id="play-form" method="post">
-            {% csrf_token %}
-            <h3 class="title">{{ current_betting.question }}</h3>
-            <p class="text">{{ current_betting.description }}</p>
-            <p class="text">你選擇了<span class="answer" id="option-answer"></span></p>
-            <button class="btn btn-default btn-custom answer-select" type="cancel">後悔了</button>
-            <button class="btn btn-default btn-custom answer-select" type="submit">不後悔</button>
-          </form>
+    <div class="modal fade work-detail" id="forget" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content font-sans">
+          <div class="modal-header">
+            <h4 class="modal-title">忘記密碼</h4>
+          </div>
+          <div class="modal-body"><span class="context">請輸入註冊時設定的電子郵件帳號<br>我們將寄送一封電子郵件協助您重設密碼</span>
+            <form id="password-reset-form" method="post" action="{% url 'rest_password_reset' %}">
+              {% csrf_token %}
+              <div class="form-group">
+                <div class="input-group"><span class="input-group-addon"><i class="fas fa-envelope"></i></span>
+                  <input class="form-control" name="email" id="email" placeholder="電子郵件"/>
+                </div>
+                <span class="help-block with-errors email-errors"></span>
+              </div>
+              <button class="btn btn-default btn-custom btn-cancel" type="cancel">取消</button>
+              <button class="btn btn-default btn-custom btn-right" id="goto-sent" type="submit">重設密碼</button>
+            </form><span class="prompt">電子郵件將在數分鐘後送達</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <footer>
-    <div class="container">
-      <p>Copyright © 2017 test. All Rights Reserved.</p>
+    <div class="modal fade work-detail" id="sent" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content font-sans">
+          <div class="modal-header">
+            <h4 class="modal-title">重設密碼郵件已發送</h4>
+          </div>
+          <div class="modal-body"><span>我們已經寄送一封重設密碼郵件至您的信箱<br></span><span id="sent-reset-email"></span><span><br>請依照指示重設密碼</span><span class="highlight"><br>沒有收到密碼重設信嗎？</span>
+            <button class="btn btn-default btn-custom btn-right" type="submit">再寄一次</button>
+          </div>
+        </div>
+      </div>
     </div>
-  </footer>
-</body>
+    <div class="modal fade work-detail" id="reset-password" data-backdrop="static" data-keyboard="false" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content font-sans">
+          <div class="modal-header">
+            <h4 class="modal-title">重設密碼</h4>
+          </div>
+          <div class="modal-body">
+            <form id="password-reset-confirm-form" action="{% url 'rest_password_reset_confirm' %}">
+              {% csrf_token %}
+              <div class="form-group" id="reset-new-password1-group">
+                <div class="input-group"><span class="input-group-addon"><i class="fas fa-lock"></i></span>
+                  <input class="form-control" type="password" name="new_password1" id="new_password1" placeholder="新密碼"/>
+                </div><span class="help-block with-errors password1-errors"></span>
+              </div>
+              <div class="form-group" id="reset-new-password2-group">
+                <div class="input-group"><span class="input-group-addon"><i class="fas fa-lock"></i></span>
+                  <input class="form-control" type="password" name="new_password2" id="new_password2" placeholder="確認新密碼"/>
+                </div><span class="help-block with-errors password2-errors"></span>
+              </div>
+              <button class="btn btn-primary btn-custom btn-cancel" type="cancel">取消</button>
+              <button class="btn btn-primary btn-custom btn-right" type="submit">重設密碼</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade work-detail" id="alert" role="dialog">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content font-sans">
+          <div class="modal-body text-center">
+            <form id="play-form" method="post">
+              {% csrf_token %}
+              <h3 class="title">{{ current_betting.question }}</h3>
+              <p class="text">{{ current_betting.description }}</p>
+              <p class="text">你選擇了<span class="answer" id="option-answer"></span></p>
+              <button class="btn btn-default btn-custom answer-select" type="cancel">後悔了</button>
+              <button class="btn btn-default btn-custom answer-select" type="submit">不後悔</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="container">
+        <p>Copyright © 2017 test. All Rights Reserved.</p>
+      </div>
+    </footer>
+  </body>
 
-<script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
-<script src="{% static 'js/validator.min.js' %}"></script>
-<script src="{% static 'js/index.js' %}"></script>
+  <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/validator.min.js' %}"></script>
+  <script src="{% static 'js/index.js' %}"></script>
+</html>

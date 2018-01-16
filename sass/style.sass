@@ -47,7 +47,7 @@ nav.navbar
   #visitors
     // display: none
   #member
-    display: none
+    display: block
     span
       vertical-align: middle
     .count
@@ -94,7 +94,7 @@ section#play,section#result,section#rank
   .heading
     font-size: 3.0rem
     color: #151719
-    text-shadow: 0px 0px 10px #b5b5b5
+    // text-shadow: 0px 0px 10px #b5b5b5
   hr
     width: 50%
     border-width: 1px 0
@@ -122,7 +122,8 @@ section#play,section#result,section#rank
     // text-shadow: 0px 0px 10px #c5c5c5
   .view
     // background-color: #333
-    background-image: url("https://i.imgur.com/SoJiRpk.gif")
+    // background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.7)),url("https://cimg.cnyes.cool/prod/news/3943773/l/c2a9717b3667bc5eacfb01dc47b04105.jpg")
+    background-image: none
     background-size: 100%
     background-repeat: no-repeat
     width: 920px
@@ -168,6 +169,9 @@ section#play,section#result,section#rank
       outline: none
     &:active
       box-shadow: initial
+  #current-betting-countdown
+    .btn-timeout
+      display: none
 section#result
   padding-top: 10px
 section#rank

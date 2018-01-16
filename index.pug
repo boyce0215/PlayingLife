@@ -1,236 +1,236 @@
 <!DOCTYPE html>
 html(lang="zh-hant-tw")
-head
-  meta(charset="UTF-8")
-  meta(name="viewport" content="width=device-width, initial-scale=1, user-scalable=no")
-  title PlayingLife
-  //- {% load static %}
-  //- link(rel="stylesheet", href="{% static 'css/normalize.css' %}")
-  //- link(rel="stylesheet", href="{% static 'css/bootstrap.min.css' %}")
-  //- link(rel="stylesheet", href="{% static 'css/style.css' %}")
-  link(rel="shortcut icon", href="favicon1.ico", type="image/x-icon")
-  link(rel="stylesheet", href="css/normalize.css")
-  link(rel="stylesheet", href="css/bootstrap.min.css")
-  link(rel="stylesheet", href="css/style.css")
-  //- link(rel="bookmark",href="images/favicon-20171229112709231.ico")
-  //- link(rel="stylesheet" href="https://use.typekit.net/uyn6hce.css")
-  script(defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js")
-  script(src="https://use.typekit.net/uyn6hce.js")
-  script.
-    try{Typekit.load({ async: true });}catch(e){}
-body
-  nav.navbar.navbar-default.navbar-fixed-top.font-sans
-    .container
-      .navbar-header
-        a.navbar-brand <strong>PlayingLife</strong>
-      //- {% if not user.is_authenticated %}
-      #visitors
-        .nav.navbar-nav.navbar-right
-          button.btn.btn-default.navbar-btn.btn-custom(type="button" data-target="#login" data-toggle="modal") 登入
-          button.btn.btn-default.navbar-btn.btn-custom(type="button" data-target="#register" data-toggle="modal") 註冊
-      //- {% else %}
-      #member
-        .nav.navbar-nav
-          .navbar-text
-            span 連續獲勝
-            span.count 0
-            span 次
-          .navbar-text
-            span 獲得星巴克
-            span.count 0
-            span 杯
-        .nav.navbar-nav.navbar-right
-          span#member-id danney@comoney.com.tw
-          button.btn.btn-default.navbar-btn.btn-custom#logout-button(type="button") 登出
-      //- {% endif %}
-  header#banner
-    .container.text-center.font-sans
-      h1.heading 讓我們成為你生活中的小確幸
-      br
-      p.text 現在開始每天進來玩預測遊戲<br>連續猜對 3 次 直接送你大杯星巴克
-      a.btn.btn-default.btn-custom#goto-play(href="#play") 馬上玩遊戲
-  section#play
-    .container.text-center.font-sans
-      h2.heading 玩預測請你喝星巴克，就是這麼簡單
-      //- hr
-      .row
-        .col-sm-12.content
-          //- h3.title {{ current_betting.question }}
-          .view
-            //- img.img-responsive(src="https://i.imgur.com/SoJiRpk.gif", alt="")
-            h3.title 台積電(2330)明日收盤股價預測
-            p.text 台灣指數不斷創新高，行情還能維持多久？
-          //- {% if not is_joined %}
-          //- {% if user.is_authenticated %}
-          //- button.btn.btn-default.btn-custom.answer-option(type="button" data-target="#alert" data-toggle="modal" value="option_first") {{ current_betting.option_first }}
-          //- button.btn.btn-default.btn-custom.answer-option(type="button" data-target="#alert" data-toggle="modal" value="option_second") {{ current_betting.option_second }}
-          //- {% else %}
-          //- button.btn.btn-default.btn-custom.answer-option(type="button" data-target="#login" data-toggle="modal" value="option_first") {{ current_betting.option_first }}
-          //- button.btn.btn-default.btn-custom.answer-option(type="button" data-target="#login" data-toggle="modal" value="option_second") {{ current_betting.option_second }}
-          //- {% endif %}
-          //- {% else %}
-          //- button.btn.btn-default.btn-answer(type="button" data-target="#alert" data-toggle="modal")
-            span#select-answer {{selected_answer}}
-          //- {% endif %}
-          button.btn.btn-default.btn-custom(type="button" data-target="#alert" data-toggle="modal") 明天收盤一定跌
-          button.btn.btn-default.btn-custom(type="button" data-target="#alert" data-toggle="modal") 明天收盤一定漲
-          .timeout
-            .timer
-            .btn.btn-default.btn-timeout 已經不能預測囉
-          .btn.btn-default.btn-answer 已選 
-            span#select-answer 明天收盤一定漲
-  //- section#result
-    .container.text-center.font-sans
-      h2.heading 昨日預測戰積
-      //- hr
-      .row
-        .col-sm-12.content
-          .view
-            h3.title 台積電(2330)明日收盤股價預測
-            p.text 台灣指數不斷創新高，行情還能維持多久？
-          .btn.btn-default.btn-answer 預測成功
-          .btn.btn-default.btn-answer 再接再厲
-  section#rank
-    .container.text-center.font-sans
-      h2.heading 昨日預測戰積
-      //- hr
-      .row
-        .col-sm-offset-1.col-sm-10.content.ranking
-          .row
-            .col-sm-3
-              span.order
-            .col-sm-9
-              span 123
-  .modal.fade.work-detail#login(role="dialog")
-    .modal-dialog
-      .modal-content.font-sans
-        .modal-header
-          h4.modal-title 登入
-          a#goto-register(herf="#") 還沒有帳號？前往註冊 >
-        .modal-body
-          form#login-form(method="post")
-            //- {% csrf_token %}
-            .form-group#login-email-group
-              .input-group
-                span.input-group-addon
-                  i.fas.fa-envelope
-                input#email.form-control(placeholder="電子郵件")
-                //- {{ login_form.input_email }}
-              span.help-block.with-errors
-            .form-group#login-passsword-group
-              .input-group
-                span.input-group-addon
-                  i.fas.fa-lock
-                input#password.form-control(placeholder="密碼")
-                //- {{ login_form.input_password }}
-              span.help-block.with-errors
-            a#goto-forget(herf="#") 忘記密碼?
-            button.btn.btn-primary.btn-block(type="submit" name="login_home" value="Login_Home") 登入
-  .modal.fade.work-detail#register(role="dialog")
-    .modal-dialog
-      .modal-content.font-sans
-        .modal-header
-          h4.modal-title 註冊
-          a#goto-login(herf="#") 已經有帳號？登入 >
-        .modal-body
-          form#register-form(data-toggle="validator" role="form" method="post")
-            //- {% csrf_token %}
-            .form-group
-              .input-group
-                span.input-group-addon
-                  i.fas.fa-envelope
-                //- {{ register_form.email }}
-                input#email.form-control(placeholder="電子郵件")
-              span.help-block.with-errors
-            .form-group
-              .input-group
-                span.input-group-addon
-                  i.fas.fa-lock
-                //- {{ register_form.password1 }}
-                input#password.form-control(placeholder="密碼")
-              span.help-block.with-errors
-            .form-group
-              .input-group
-                span.input-group-addon
-                  i.fas.fa-lock
-                input#re-password.form-control(placeholder="確認密碼")
-                //- {{ register_form.password2 }}
-              span.help-block.with-errors
-            button.btn.btn-primary.btn-block(type="submit" name="register_home" value="Register_Home") 註冊
-  .modal.fade.work-detail#forget(role="dialog")
-    .modal-dialog
-      .modal-content.font-sans
-        .modal-header
-          h4.modal-title 忘記密碼
-        .modal-body
-          span.context 請輸入註冊時設定的電子郵件帳號<br>我們將寄送一封電子郵件協助您重設密碼
-          form
-            .input-group
-              span.input-group-addon
-                i.fas.fa-envelope
-              input#email.form-control(placeholder="電子郵件")
-            button.btn.btn-primary.btn-custom.btn-cancel(type="cancel") 取消
-            button.btn.btn-primary.btn-custom.btn-right#goto-sent(type="submit") 重設密碼
-          span.prompt 電子郵件將在數分鐘後送達
-  .modal.fade.work-detail#sent(role="dialog")
-    .modal-dialog
-      .modal-content.font-sans
-        .modal-header
-          h4.modal-title 重設密碼郵件已發送
-        .modal-body
-          span 我們已經寄送一封重設密碼郵件至您的信箱<br>
-          span danny@cmoney.com.tw
-          span <br>請依照指示重設密碼
-          span.highlight <br>沒有收到密碼重設信嗎？
-          button.btn.btn-primary.btn-custom.btn-right(type="submit") 再寄一次
-  .modal.fade.work-detail#reset-password(role="dialog")
-    .modal-dialog
-      .modal-content.font-sans
-        .modal-header
-          h4.modal-title 重設密碼
-        .modal-body
-          form
-            .form-group
-              .input-group
-                span.input-group-addon
-                  i.fas.fa-lock
-                input#password.form-control(placeholder="新密碼")
-              span.help-block.with-errors
-            .form-group
-              .input-group
-                span.input-group-addon
-                  i.fas.fa-lock
-                input#re-password.form-control(placeholder="確認新密碼")
-              span.help-block.with-errors
-            button.btn.btn-primary.btn-custom.btn-cancel(type="cancel") 取消
-            button.btn.btn-primary.btn-custom.btn-right#goto-sent(type="submit") 重設密碼
-  .modal.fade.work-detail#alert(role="dialog")
-    .modal-dialog.modal-sm
-      .modal-content.font-sans
-        .modal-body.text-center
-          form#play-form(method="post")
-            //- {% csrf_token %}
-            h3.title 台積電(2330)明日收盤股價預測
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, user-scalable=no")
+    title PlayingLife
+    //- {% load static %}
+    //- link(rel="stylesheet", href="{% static 'css/normalize.css' %}")
+    //- link(rel="stylesheet", href="{% static 'css/bootstrap.min.css' %}")
+    //- link(rel="stylesheet", href="{% static 'css/style.css' %}")
+    link(rel="shortcut icon", href="favicon1.ico", type="image/x-icon")
+    link(rel="stylesheet", href="css/normalize.css")
+    link(rel="stylesheet", href="css/bootstrap.min.css")
+    link(rel="stylesheet", href="css/style.css")
+    //- link(rel="bookmark",href="images/favicon-20171229112709231.ico")
+    //- link(rel="stylesheet" href="https://use.typekit.net/uyn6hce.css")
+    script(defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js")
+    script(src="https://use.typekit.net/uyn6hce.js")
+    script.
+      try{Typekit.load({ async: true });}catch(e){}
+  body
+    nav.navbar.navbar-default.navbar-fixed-top.font-sans
+      .container
+        .navbar-header
+          a.navbar-brand <strong>PlayingLife</strong>
+        //- {% if not user.is_authenticated %}
+        #visitors
+          .nav.navbar-nav.navbar-right
+            button.btn.btn-default.navbar-btn.btn-custom(type="button" data-target="#login" data-toggle="modal") 登入
+            button.btn.btn-default.navbar-btn.btn-custom(type="button" data-target="#register" data-toggle="modal") 註冊
+        //- {% else %}
+        #member
+          .nav.navbar-nav
+            .navbar-text
+              span 連續獲勝
+              span.count 0
+              span 次
+            .navbar-text
+              span 獲得星巴克
+              span.count 0
+              span 杯
+          .nav.navbar-nav.navbar-right
+            span#member-id danney@comoney.com.tw
+            button.btn.btn-default.navbar-btn.btn-custom#logout-button(type="button") 登出
+        //- {% endif %}
+    header#banner
+      .container.text-center.font-sans
+        h1.heading 讓我們成為你生活中的小確幸
+        br
+        p.text 現在開始每天進來玩預測遊戲<br>連續猜對 3 次 直接送你大杯星巴克
+        a.btn.btn-default.btn-custom#goto-play(href="#play") 馬上玩遊戲
+    section#play
+      .container.text-center.font-sans
+        h2.heading 玩預測請你喝星巴克，就是這麼簡單
+        //- hr
+        .row
+          .col-sm-12.content
             //- h3.title {{ current_betting.question }}
-            p.text 台灣指數不斷創新高，行情還能維持多久？
-            p.text 你選擇了
-              span.answer 明天收盤一定跌
-            button.btn.btn-primary.btn-custom.answer-select(type="cancel") 後悔了
-            button.btn.btn-primary.btn-custom.answer-select(type="submit") 不後悔
-  footer
-    .container
-      p Copyright © 2017 test. All Rights Reserved.
-//- {# temporarily for debugging #}
-//- {% if user.is_authenticated %}
-//-   <p>Welcome {{ user.email }} !!!</p>
-//- {% endif %}
+            .view
+              //- img.img-responsive(src="https://i.imgur.com/SoJiRpk.gif", alt="")
+              h3.title 台積電(2330)明日收盤股價預測
+              p.text 台灣指數不斷創新高，行情還能維持多久？
+            //- {% if not is_joined %}
+            //- {% if user.is_authenticated %}
+            //- button.btn.btn-default.btn-custom.answer-option(type="button" data-target="#alert" data-toggle="modal" value="option_first") {{ current_betting.option_first }}
+            //- button.btn.btn-default.btn-custom.answer-option(type="button" data-target="#alert" data-toggle="modal" value="option_second") {{ current_betting.option_second }}
+            //- {% else %}
+            //- button.btn.btn-default.btn-custom.answer-option(type="button" data-target="#login" data-toggle="modal" value="option_first") {{ current_betting.option_first }}
+            //- button.btn.btn-default.btn-custom.answer-option(type="button" data-target="#login" data-toggle="modal" value="option_second") {{ current_betting.option_second }}
+            //- {% endif %}
+            //- {% else %}
+            //- button.btn.btn-default.btn-answer(type="button" data-target="#alert" data-toggle="modal")
+              span#select-answer {{selected_answer}}
+            //- {% endif %}
+            button.btn.btn-default.btn-custom(type="button" data-target="#alert" data-toggle="modal") 明天收盤一定跌
+            button.btn.btn-default.btn-custom(type="button" data-target="#alert" data-toggle="modal") 明天收盤一定漲
+            #current-betting-countdown
+              .timer
+              .btn.btn-default.btn-timeout 已經不能預測囉
+            .btn.btn-default.btn-answer 已選 
+              span#select-answer 明天收盤一定漲
+    //- section#result
+      .container.text-center.font-sans
+        h2.heading 昨日預測戰積
+        //- hr
+        .row
+          .col-sm-12.content
+            .view
+              h3.title 台積電(2330)明日收盤股價預測
+              p.text 台灣指數不斷創新高，行情還能維持多久？
+            .btn.btn-default.btn-answer 預測成功
+            .btn.btn-default.btn-answer 再接再厲
+    section#rank
+      .container.text-center.font-sans
+        h2.heading 昨日預測戰績
+        //- hr
+        .row
+          .col-sm-offset-1.col-sm-10.content.ranking
+            .row
+              .col-sm-3
+                span.order
+              .col-sm-9
+                span 123
+    .modal.fade.work-detail#login(role="dialog")
+      .modal-dialog
+        .modal-content.font-sans
+          .modal-header
+            h4.modal-title 登入
+            a#goto-register(herf="#") 還沒有帳號？前往註冊 >
+          .modal-body
+            form#login-form(method="post")
+              //- {% csrf_token %}
+              .form-group#login-email-group
+                .input-group
+                  span.input-group-addon
+                    i.fas.fa-envelope
+                  input#email.form-control(placeholder="電子郵件")
+                  //- {{ login_form.input_email }}
+                span.help-block.with-errors
+              .form-group#login-passsword-group
+                .input-group
+                  span.input-group-addon
+                    i.fas.fa-lock
+                  input#password.form-control(placeholder="密碼")
+                  //- {{ login_form.input_password }}
+                span.help-block.with-errors
+              a#goto-forget(herf="#") 忘記密碼?
+              button.btn.btn-primary.btn-block(type="submit" name="login_home" value="Login_Home") 登入
+    .modal.fade.work-detail#register(role="dialog")
+      .modal-dialog
+        .modal-content.font-sans
+          .modal-header
+            h4.modal-title 註冊
+            a#goto-login(herf="#") 已經有帳號？登入 >
+          .modal-body
+            form#register-form(data-toggle="validator" role="form" method="post")
+              //- {% csrf_token %}
+              .form-group
+                .input-group
+                  span.input-group-addon
+                    i.fas.fa-envelope
+                  //- {{ register_form.email }}
+                  input#email.form-control(placeholder="電子郵件")
+                span.help-block.with-errors
+              .form-group
+                .input-group
+                  span.input-group-addon
+                    i.fas.fa-lock
+                  //- {{ register_form.password1 }}
+                  input#password.form-control(placeholder="密碼")
+                span.help-block.with-errors
+              .form-group
+                .input-group
+                  span.input-group-addon
+                    i.fas.fa-lock
+                  input#re-password.form-control(placeholder="確認密碼")
+                  //- {{ register_form.password2 }}
+                span.help-block.with-errors
+              button.btn.btn-primary.btn-block(type="submit" name="register_home" value="Register_Home") 註冊
+    .modal.fade.work-detail#forget(role="dialog")
+      .modal-dialog
+        .modal-content.font-sans
+          .modal-header
+            h4.modal-title 忘記密碼
+          .modal-body
+            span.context 請輸入註冊時設定的電子郵件帳號<br>我們將寄送一封電子郵件協助您重設密碼
+            form
+              .input-group
+                span.input-group-addon
+                  i.fas.fa-envelope
+                input#email.form-control(placeholder="電子郵件")
+              button.btn.btn-primary.btn-custom.btn-cancel(type="cancel") 取消
+              button.btn.btn-primary.btn-custom.btn-right#goto-sent(type="submit") 重設密碼
+            span.prompt 電子郵件將在數分鐘後送達
+    .modal.fade.work-detail#sent(role="dialog")
+      .modal-dialog
+        .modal-content.font-sans
+          .modal-header
+            h4.modal-title 重設密碼郵件已發送
+          .modal-body
+            span 我們已經寄送一封重設密碼郵件至您的信箱<br>
+            span danny@cmoney.com.tw
+            span <br>請依照指示重設密碼
+            span.highlight <br>沒有收到密碼重設信嗎？
+            button.btn.btn-primary.btn-custom.btn-right(type="submit") 再寄一次
+    .modal.fade.work-detail#reset-password(role="dialog")
+      .modal-dialog
+        .modal-content.font-sans
+          .modal-header
+            h4.modal-title 重設密碼
+          .modal-body
+            form
+              .form-group
+                .input-group
+                  span.input-group-addon
+                    i.fas.fa-lock
+                  input#password.form-control(placeholder="新密碼")
+                span.help-block.with-errors
+              .form-group
+                .input-group
+                  span.input-group-addon
+                    i.fas.fa-lock
+                  input#re-password.form-control(placeholder="確認新密碼")
+                span.help-block.with-errors
+              button.btn.btn-primary.btn-custom.btn-cancel(type="cancel") 取消
+              button.btn.btn-primary.btn-custom.btn-right#goto-sent(type="submit") 重設密碼
+    .modal.fade.work-detail#alert(role="dialog")
+      .modal-dialog.modal-sm
+        .modal-content.font-sans
+          .modal-body.text-center
+            form#play-form(method="post")
+              //- {% csrf_token %}
+              h3.title 台積電(2330)明日收盤股價預測
+              //- h3.title {{ current_betting.question }}
+              p.text 台灣指數不斷創新高，行情還能維持多久？
+              p.text 你選擇了
+                span.answer 明天收盤一定跌
+              button.btn.btn-primary.btn-custom.answer-select(type="cancel") 後悔了
+              button.btn.btn-primary.btn-custom.answer-select(type="submit") 不後悔
+    footer
+      .container
+        p Copyright © 2017 test. All Rights Reserved.
+  //- {# temporarily for debugging #}
+  //- {% if user.is_authenticated %}
+  //-   <p>Welcome {{ user.email }} !!!</p>
+  //- {% endif %}
 
-//- script(src="{% static 'js/jquery-3.1.1.min.js' %}")
-//- script(src="{% static 'js/bootstrap.min.js' %}")
-//- script(src="{% static 'js/validator.min.js' %}")
-//- script(src="{% static 'js/index.js' %}")
+  //- script(src="{% static 'js/jquery-3.1.1.min.js' %}")
+  //- script(src="{% static 'js/bootstrap.min.js' %}")
+  //- script(src="{% static 'js/validator.min.js' %}")
+  //- script(src="{% static 'js/index.js' %}")
 
-script(src="js/jquery-3.1.1.min.js")
-script(src="js/bootstrap.min.js")
-script(src="js/validator.min.js")
-script(src="js/index.js")
+  script(src="js/jquery-3.1.1.min.js")
+  script(src="js/bootstrap.min.js")
+  script(src="js/validator.min.js")
+  script(src="js/index.js")
