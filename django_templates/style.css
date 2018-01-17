@@ -114,7 +114,8 @@ section#play, section#result, section#rank {
     transform: translateX(-50%); }
   section#play .view, section#result .view, section#rank .view {
     background-image: none;
-    background-size: 100%;
+    background-size: 100% 100%;
+    background-position: center;
     background-repeat: no-repeat;
     width: 920px;
     height: 480px;
@@ -126,6 +127,8 @@ section#play, section#result, section#rank {
       height: auto; }
   section#play .timer, section#result .timer, section#rank .timer {
     font-size: 2.2rem; }
+  section#play .people, section#result .people, section#rank .people {
+    font-size: 1.6rem; }
   section#play .btn-custom, section#result .btn-custom, section#rank .btn-custom {
     margin: 20px 22px;
     padding: 16px 24px;
@@ -166,17 +169,38 @@ section#result {
 section#rank .content {
   background-color: #FFF;
   padding: 20px; }
+section#rank .ranking {
+  counter-reset: ranking; }
+  section#rank .ranking .row {
+    margin: 30px auto; }
 section#rank .order {
-  width: 40px;
-  height: 40px;
+  display: block;
+  width: 48px;
+  height: 48px;
   border-radius: 100%;
   color: #fff;
   border: none;
-  background-color: #dab413; }
+  background-color: #60758d;
+  margin: auto; }
   section#rank .order::before {
     content: counter(ranking);
     counter-increment: ranking;
-    font-size: 2.4rem; }
+    font-size: 3rem;
+    vertical-align: text-top; }
+section#rank .name {
+  font-size: 2.6rem;
+  font-weight: 500;
+  margin: auto;
+  display: inline-block; }
+section#rank .times {
+  display: inline-block;
+  font-size: 1.8rem;
+  margin: 0 10px; }
+  section#rank .times .count {
+    padding: 0 10px;
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #4f77a5; }
 
 #login .modal-content, #register .modal-content, #forget .modal-content, #sent .modal-content, #reset-password .modal-content {
   padding: 25px 40px; }

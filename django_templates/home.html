@@ -83,14 +83,12 @@
               {% endif %}
               <div id="current-betting-countdown">
                 <div class="timer"></div>
+                <div class="people">{{current_players}}人已預測</div>
                 <div class="btn btn-default btn-timeout">已經不能預測囉</div>
               </div>
             {% else %}
               <div class="btn btn-default btn-answer">已選 <span id="select-answer">{{selected_current_answer}}</span></div>
             {% endif %}
-          </div>
-          <div class="col-sm-12 content">
-            {{current_players}}人已預測
           </div>
         </div>
       </div>
@@ -98,7 +96,7 @@
     {% if previous_betting %}
       <section id="result">
         <div class="container text-center font-sans">
-          <h2 class="heading">昨日預測戰積</h2>
+          <h2 class="heading">昨日預測戰績</h2>
           <hr/>
           <div class="row">
             <div class="col-sm-12 content">
@@ -123,6 +121,55 @@
         </div>
       </section>
     {% endif %}
+    <section id="rank">
+      <div class="container text-center font-sans">
+        <h2 class="heading">誰是預測王</h2>
+        <div class="row">
+          <div class="col-sm-offset-2 col-sm-8 content ranking">
+            <div class="row">
+              <div class="col-sm-2"><span class="order"></span></div>
+              <div class="col-sm-10 text-left">
+                <div class="name">danny@XXXX.XXX.XX</div>
+                <div class="times"><span>連續獲勝</span><span class="count">0</span><span>次</span></div>
+                <div class="times"><span>獲得星巴克</span><span class="count">0</span><span>杯</span></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-2"><span class="order"></span></div>
+              <div class="col-sm-10 text-left">
+                <div class="name">danny@XXXX.XXX.XX</div>
+                <div class="times"><span>連續獲勝</span><span class="count">0</span><span>次</span></div>
+                <div class="times"><span>獲得星巴克</span><span class="count">0</span><span>杯</span></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-2"><span class="order"></span></div>
+              <div class="col-sm-10 text-left">
+                <div class="name">danny@XXXX.XXX.XX</div>
+                <div class="times"><span>連續獲勝</span><span class="count">0</span><span>次</span></div>
+                <div class="times"><span>獲得星巴克</span><span class="count">0</span><span>杯</span></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-2"><span class="order"></span></div>
+              <div class="col-sm-10 text-left">
+                <div class="name">danny@XXXX.XXX.XX</div>
+                <div class="times"><span>連續獲勝</span><span class="count">0</span><span>次</span></div>
+                <div class="times"><span>獲得星巴克</span><span class="count">0</span><span>杯</span></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-2"><span class="order"></span></div>
+              <div class="col-sm-10 text-left">
+                <div class="name">danny@XXXX.XXX.XX</div>
+                <div class="times"><span>連續獲勝</span><span class="count">0</span><span>次</span></div>
+                <div class="times"><span>獲得星巴克</span><span class="count">0</span><span>杯</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <div class="modal fade work-detail" id="login" role="dialog">
       <div class="modal-dialog">
         <div class="modal-content font-sans">
