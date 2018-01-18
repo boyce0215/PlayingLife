@@ -89,13 +89,6 @@ section#play, section#result, section#rank {
   section#play .heading, section#result .heading, section#rank .heading {
     font-size: 3rem;
     color: #151719; }
-  section#play hr, section#result hr, section#rank hr {
-    width: 50%;
-    border-width: 1px 0;
-    border-style: solid;
-    border-color: #e3e3e3;
-    height: 4px;
-    margin-bottom: 40px; }
   section#play .title, section#result .title, section#rank .title {
     color: #fff;
     font-size: 2.4rem;
@@ -113,7 +106,7 @@ section#play, section#result, section#rank {
     left: 50%;
     transform: translateX(-50%); }
   section#play .view, section#result .view, section#rank .view {
-    background-image: none;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.7)), url("https://cimg.cnyes.cool/prod/news/3943773/l/c2a9717b3667bc5eacfb01dc47b04105.jpg");
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -163,6 +156,9 @@ section#play, section#result, section#rank {
   section#play #current-betting-countdown .btn-timeout, section#result #current-betting-countdown .btn-timeout, section#rank #current-betting-countdown .btn-timeout {
     display: none; }
 
+section#play .row:nth-child(3) {
+  margin-top: 20px; }
+
 section#result {
   padding-top: 10px; }
 
@@ -181,21 +177,20 @@ section#rank .order {
   color: #fff;
   border: none;
   background-color: #60758d;
-  margin: auto; }
+  margin: 16px auto; }
   section#rank .order::before {
     content: counter(ranking);
     counter-increment: ranking;
     font-size: 3rem;
     vertical-align: text-top; }
 section#rank .name {
-  font-size: 2.6rem;
+  font-size: 2.8rem;
   font-weight: 500;
-  margin: auto;
-  display: inline-block; }
+  margin: auto; }
 section#rank .times {
   display: inline-block;
   font-size: 1.8rem;
-  margin: 0 10px; }
+  margin-right: 10px; }
   section#rank .times .count {
     padding: 0 10px;
     font-size: 2.2rem;
@@ -258,10 +253,10 @@ section#rank .times {
   margin-top: 0px;
   margin-bottom: 0px; }
 
-#alert .answer {
+#play-1 .answer, #play-2 .answer {
   font-weight: bold;
   padding-left: 4px; }
-#alert .btn-custom {
+#play-1 .btn-custom, #play-2 .btn-custom {
   margin: 12px 8px;
   padding: 8px 16px;
   font-size: 1.8rem; }

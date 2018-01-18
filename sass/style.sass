@@ -95,13 +95,13 @@ section#play,section#result,section#rank
     font-size: 3.0rem
     color: #151719
     // text-shadow: 0px 0px 10px #b5b5b5
-  hr
-    width: 50%
-    border-width: 1px 0
-    border-style: solid
-    border-color: #e3e3e3
-    height: 4px
-    margin-bottom: 40px
+  // hr
+  //   width: 50%
+  //   border-width: 1px 0
+  //   border-style: solid
+  //   border-color: #e3e3e3
+  //   height: 4px
+  //   margin-bottom: 40px
   .title
     color: #fff
     font-size: 2.4rem
@@ -122,8 +122,8 @@ section#play,section#result,section#rank
     // text-shadow: 0px 0px 10px #c5c5c5
   .view
     // background-color: #333
-    // background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.7)),url("https://cimg.cnyes.cool/prod/news/3943773/l/c2a9717b3667bc5eacfb01dc47b04105.jpg")
-    background-image: none
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.7)),url("https://cimg.cnyes.cool/prod/news/3943773/l/c2a9717b3667bc5eacfb01dc47b04105.jpg")
+    // background-image: none
     background-size: 100% 100%
     background-position: center
     background-repeat: no-repeat
@@ -175,6 +175,9 @@ section#play,section#result,section#rank
   #current-betting-countdown
     .btn-timeout
       display: none
+section#play
+  .row:nth-child(3)
+    margin-top: 20px
 section#result
   padding-top: 10px
 section#rank
@@ -193,23 +196,23 @@ section#rank
     color: #fff
     border: none
     background-color: #60758d
-    margin: auto
+    margin: 16px auto
     &::before
       content: counter(ranking)
       counter-increment: ranking
       font-size: 3rem
       vertical-align: text-top
   .name
-    font-size: 2.6rem
+    font-size: 2.8rem
     font-weight: 500
     margin: auto
-    display: inline-block
+    // display: inline-block
     // vertical-align: middle
   .times
     display: inline-block
     font-size: 1.8rem
     // vertical-align: middle
-    margin: 0 10px
+    margin-right: 10px
     .count
       padding: 0 10px
       font-size: 2.2rem
@@ -277,7 +280,7 @@ section#rank
     .help-block
       margin-top: 0px
       margin-bottom: 0px
-#alert
+#play-1,#play-2
   .answer
     font-weight: bold
     padding-left: 4px

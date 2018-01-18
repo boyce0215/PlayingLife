@@ -15,6 +15,12 @@ $("#register #goto-login").click(function(){
   $("#register").modal("hide");
   $("#login").modal("show");
 });
+$("input").focus(function(){
+  $(this).parent().addClass("has-focus");
+});
+$("input").blur(function(){
+  $(this).parent().removeClass("has-focus");
+});
 $("#logout-button").click(function(){
   window.location.href = '/accounts/logout/';
 });
