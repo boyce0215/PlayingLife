@@ -26,20 +26,37 @@ $("#logout-button").click(function(){
 });
 $("button.answer-select[type=cancel]").click(function(event){
   event.preventDefault();
-  $("#alert").modal("hide");
+  $("#play-1").modal("hide");
+  $("#play-2").modal("hide");
 });
-$("button.answer-select[type=submit]").click(function(event){
+
+$("#play-form-current button.answer-select[type=submit]").click(function(event){
   event.preventDefault();
   var input = $("<input>")
    .attr("type", "hidden")
-   .attr("name", "answer_select").val($("span#option-answer").attr("value"));
-  $('#play-form').append($(input));
-  $("span#select-answer").text($("span#option-answer").text());
-  $('#play-form').submit();
+   .attr("name", "answer_select_current").val(
+    $("span#option-answer-current").attr("value"));
+  $('#play-form-current').append($(input));
+  $("span#select-answer").text($("span#option-answer-current").text());
+  $('#play-form-current').submit();
 });
-$("button.answer-option").click(function(){
-  $("span#option-answer").text($(this).text());
-  $("span#option-answer").attr("value", $(this).attr("value"));
+$("#play-form-previous button.answer-select[type=submit]").click(function(event){
+  event.preventDefault();
+  var input = $("<input>")
+   .attr("type", "hidden")
+   .attr("name", "answer_select_previous").val(
+    $("span#option-answer-previous").attr("value"));
+  $('#play-form-previous').append($(input));
+  $("span#select-answer").text($("span#option-answer-previous").text());
+  $('#play-form-previous').submit();
+});
+$("section#play button.answer-option").click(function(){
+  $("span#option-answer-current").text($(this).text());
+  $("span#option-answer-current").attr("value", $(this).attr("value"));
+});
+$("section#result button.answer-option").click(function(){
+  $("span#option-answer-previous").text($(this).text());
+  $("span#option-answer-previous").attr("value", $(this).attr("value"));
 });
 $("button#register-button").click(function(event){
   event.preventDefault();
@@ -168,17 +185,11 @@ $("#sent button[type=submit]").click(function(event){
 });
 
 
-/*倒數器開始*/
-var counterSetting, currentCountdown = {
-  settings: {
-    // dateStart: new Date('Dec 29, 2017 00:00:00'),設定開始日期
-    // dateEnd: new Date('Dec 30, 2017 03:00:00'),/*設定結束日期*/
+// Countdown timer
+var BaseCountdown = function () {
+  this.settings = {
     dateStart: "",/*設定開始日期*/
     dateEnd: "",/*設定結束日期*/
-    // elements: document.querySelectorAll(".timer"),/*設定哪一個選擇器*/
-    elements: $("#current-betting-countdown .timer"),/*設定哪一個選擇器*/
-    // msgBefore: "活動已結束!",/*開始日期前會出現的內容*/
-    // msgAfter: "活動未開始!",/*結束日期後會出現的內容*/
     msgPattern: '<span> {hours} 小時 {minutes} 分  {seconds} 秒 後預測截止</span>',/*活動期間會出現的內容*/
     patterns: [{
       pattern: '{years}',
@@ -204,67 +215,81 @@ var counterSetting, currentCountdown = {
     }],
     interval: 1000,
     now: new Date()
-  },
+  };
+};
 
-  init: function() {
-    counterSetting = this.settings;
-
-    $.get("countdown-time/", function(data) {
-      counterSetting.dateStart = new Date(Date.parse(data.start_date));
-      counterSetting.dateEnd = new Date(Date.parse(data.end_date));
-      currentCountdown.defineInterval();
-      counterSetting.now < counterSetting.dateEnd && counterSetting.now > counterSetting.dateStart ? currentCountdown.run() : currentCountdown.outOfInterval();
-    });
-  },
-
-  run: function() {
-    var remainingSeconds = Math.abs(
-      (counterSetting.now.valueOf() - counterSetting.dateEnd.valueOf())/1000);
-    var timer = setInterval(function() {
-      --remainingSeconds;
-      if (remainingSeconds > 0) {
-        currentCountdown.display(remainingSeconds);
-      } else {
-        currentCountdown.outOfInterval();
-        clearInterval(timer);
-      }
-    }, counterSetting.interval);
-    currentCountdown.display(remainingSeconds);
-  },
-
-  defineInterval: function() {
-    for (var index = counterSetting.patterns.length; index > 0; index--) {
-      var currentPattern = counterSetting.patterns[index - 1];
-
-      if (counterSetting.msgPattern.indexOf(currentPattern.pattern) !== -1) {
-        counterSetting.interval = currentPattern.seconds * 1000;
-        return;
-      }
+BaseCountdown.prototype.run = function() {
+  var remainingSeconds = Math.abs(
+    (this.settings.now.valueOf() - this.settings.dateEnd.valueOf())/1000);
+  var self = this;
+  var timer = setInterval(function() {
+    --remainingSeconds;
+    if (remainingSeconds > 0) {
+      self.display(remainingSeconds);
+    } else {
+      self.outOfInterval();
+      clearInterval(timer);
     }
-  },
+  }, self.settings.interval);
+  self.display(remainingSeconds);
+};
 
-  display: function(seconds) {
-    var output = counterSetting.msgPattern;
-    for (var index = 0; index < counterSetting.patterns.length; index++) {
-      var currentPattern = counterSetting.patterns[index];
-      if (counterSetting.msgPattern.indexOf(currentPattern.pattern) !== -1) {
-        var number = Math.floor(seconds / currentPattern.seconds);
-        seconds -= number * currentPattern.seconds;
-        output = output.replace(currentPattern.pattern, number);
-      }
+BaseCountdown.prototype.defineInterval = function() {
+  for (var index = this.settings.patterns.length; index > 0; index--) {
+    var currentPattern = this.settings.patterns[index - 1];
+
+    if (this.settings.msgPattern.indexOf(currentPattern.pattern) !== -1) {
+      this.settings.interval = currentPattern.seconds * 1000;
+      return;
     }
-    for (var index = 0; index < counterSetting.elements.length; index++)
-      counterSetting.elements[index].innerHTML = output;
-  },
-
-  outOfInterval: function() {
-    // var message = counterSetting.now > counterSetting.dateStart ? counterSetting.msgBefore : counterSetting.msgAfter;
-    // for (var index = 0; index < counterSetting.elements.length; index++)
-    //   counterSetting.elements[index].innerHTML = message;
-    $("#current-betting-countdown .btn-timeout").css('display', 'inline-block');
-    $("button.answer-option").hide();
   }
-}
+};
+
+BaseCountdown.prototype.display = function(seconds) {
+  var output = this.settings.msgPattern;
+  for (var index = 0; index < this.settings.patterns.length; index++) {
+    var currentPattern = this.settings.patterns[index];
+    if (this.settings.msgPattern.indexOf(currentPattern.pattern) !== -1) {
+      var number = Math.floor(seconds / currentPattern.seconds);
+      seconds -= number * currentPattern.seconds;
+      output = output.replace(currentPattern.pattern, number);
+    }
+  }
+  for (var index = 0; index < this.settings.timerElement.length; index++) {
+    this.settings.timerElement[index].innerHTML = output;
+  }
+};
+
+BaseCountdown.prototype.outOfInterval = function() {
+  this.settings.timeoutElement.css('display', 'inline-block');
+  this.settings.optionElement.hide();
+};
+
+BaseCountdown.prototype.checkRun = function(timeUrl) {
+  var self = this;
+  $.get(timeUrl, function(data) {
+    self.settings.dateStart = new Date(Date.parse(data.start_date));
+    self.settings.dateEnd = new Date(Date.parse(data.end_date));
+    self.defineInterval();
+    self.settings.now < self.settings.dateEnd && self.settings.now > self.settings.dateStart ? self.run() : self.outOfInterval();
+  });
+};
+
+var currentCountdown = new BaseCountdown();
+currentCountdown.init = function() {
+  this.settings.timerElement = $("#current-betting-countdown .timer");
+  this.settings.optionElement = $("section#play button.answer-option");
+  this.settings.timeoutElement = $("section#play .btn-timeout");
+  this.checkRun("current-countdown-time/");
+};
+
+var previousCountdown = new BaseCountdown();
+previousCountdown.init = function() {
+  this.settings.timerElement = $("#previous-betting-countdown .timer");
+  this.settings.optionElement = $("section#result button.answer-option");
+  this.settings.timeoutElement = $("section#result .btn-timeout");
+  this.checkRun("previous-countdown-time/");
+};
 
 currentCountdown.init();
-/*倒數器結束*/
+previousCountdown.init();
