@@ -26,8 +26,8 @@ $("#logout-button").click(function(){
 });
 $("button.answer-select[type=cancel]").click(function(event){
   event.preventDefault();
-  $("#play-1").modal("hide");
-  $("#play-2").modal("hide");
+  $("#play-current").modal("hide");
+  $("#play-previous").modal("hide");
 });
 
 $("#play-form-current button.answer-select[type=submit]").click(function(event){
@@ -50,11 +50,11 @@ $("#play-form-previous button.answer-select[type=submit]").click(function(event)
   $("span#select-answer").text($("span#option-answer-previous").text());
   $('#play-form-previous').submit();
 });
-$("section#play button.answer-option").click(function(){
+$("section#current-block button.answer-option").click(function(){
   $("span#option-answer-current").text($(this).text());
   $("span#option-answer-current").attr("value", $(this).attr("value"));
 });
-$("section#result button.answer-option").click(function(){
+$("section#previous-block button.answer-option").click(function(){
   $("span#option-answer-previous").text($(this).text());
   $("span#option-answer-previous").attr("value", $(this).attr("value"));
 });
@@ -278,16 +278,16 @@ BaseCountdown.prototype.checkRun = function(timeUrl) {
 var currentCountdown = new BaseCountdown();
 currentCountdown.init = function() {
   this.settings.timerElement = $("#current-betting-countdown .timer");
-  this.settings.optionElement = $("section#play button.answer-option");
-  this.settings.timeoutElement = $("section#play .btn-timeout");
+  this.settings.optionElement = $("section#current-block button.answer-option");
+  this.settings.timeoutElement = $("section#current-block .btn-timeout");
   this.checkRun("current-countdown-time/");
 };
 
 var previousCountdown = new BaseCountdown();
 previousCountdown.init = function() {
   this.settings.timerElement = $("#previous-betting-countdown .timer");
-  this.settings.optionElement = $("section#result button.answer-option");
-  this.settings.timeoutElement = $("section#result .btn-timeout");
+  this.settings.optionElement = $("section#previous-block button.answer-option");
+  this.settings.timeoutElement = $("section#previous-block .btn-timeout");
   this.checkRun("previous-countdown-time/");
 };
 

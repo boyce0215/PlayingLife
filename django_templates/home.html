@@ -61,10 +61,10 @@
     <header id="banner">
       <div class="container text-center font-sans">
         <h1 class="heading">讓我們成為你生活中的小確幸</h1><br/>
-        <p class="text">現在開始每天進來玩預測遊戲<br>連續猜對 3 次 直接送你大杯星巴克</p><a class="btn btn-default btn-custom" id="goto-play" href="#play">馬上玩遊戲</a>
+        <p class="text">現在開始每天進來玩預測遊戲<br>連續猜對 3 次 直接送你大杯星巴克</p><a class="btn btn-default btn-custom" id="goto-play" href="#current-block">馬上玩遊戲</a>
       </div>
     </header>
-    <section id="play">
+    <section id="current-block">
       <div class="container text-center font-sans">
         <h2 class="heading">玩預測請你喝星巴克，就是這麼簡單</h2>
         {% if current_interaction.betting %}
@@ -86,8 +86,8 @@
                   <div class="btn btn-default btn-answer">已選 <span id="select-answer-current">{{current_interaction.selected_answer}}</span></div>
                 {% endif %}
               {% else %}
-                <button class="btn btn-default btn-custom answer-option" type="button" data-target="#play-1" data-toggle="modal" value="option_first">{{ current_interaction.betting.option_first }}</button>
-                <button class="btn btn-default btn-custom answer-option" type="button" data-target="#play-1" data-toggle="modal" value="option_second">{{ current_interaction.betting.option_second }}</button>
+                <button class="btn btn-default btn-custom answer-option" type="button" data-target="#play-current" data-toggle="modal" value="option_first">{{ current_interaction.betting.option_first }}</button>
+                <button class="btn btn-default btn-custom answer-option" type="button" data-target="#play-current" data-toggle="modal" value="option_second">{{ current_interaction.betting.option_second }}</button>
                 <div class="btn btn-default btn-timeout">已經不能預測囉</div>
               {% endif %}
             {% else %}
@@ -106,9 +106,8 @@
     </section>
 
     {% if previous_interaction.betting %}
-    <section id="result">
+    <section id="previous-block">
       <div class="container text-center font-sans">
-        <h2 class="heading">玩預測請你喝星巴克，就是這麼簡單</h2>
         <div class="row">
           <div class="col-sm-12 content">
             <div class="view" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.7)),url({{ previous_interaction.betting.image_link }})">
@@ -127,8 +126,8 @@
                   <div class="btn btn-default btn-answer">已選 <span id="select-answer-previous">{{previous_interaction.selected_answer}}</span></div>
                 {% endif %}
               {% else %}
-                <button class="btn btn-default btn-custom answer-option" type="button" data-target="#play-2" data-toggle="modal" value="option_first">{{ previous_interaction.betting.option_first }}</button>
-                <button class="btn btn-default btn-custom answer-option" type="button" data-target="#play-2" data-toggle="modal" value="option_second">{{ previous_interaction.betting.option_second }}</button>
+                <button class="btn btn-default btn-custom answer-option" type="button" data-target="#play-previous" data-toggle="modal" value="option_first">{{ previous_interaction.betting.option_first }}</button>
+                <button class="btn btn-default btn-custom answer-option" type="button" data-target="#play-previous" data-toggle="modal" value="option_second">{{ previous_interaction.betting.option_second }}</button>
                 <div class="btn btn-default btn-timeout">已經不能預測囉</div>
               {% endif %}
             {% else %}
@@ -140,6 +139,39 @@
               <div class="timer"></div>
               <div class="people">{{previous_interaction.total_players_count}}人已預測</div>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    {% if closed_interaction.betting %}
+    <section id="closed-block">
+      <div class="container text-center font-sans">
+        <div class="row">
+          <div class="col-sm-12 content">
+            <div class="view" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.7)),url({{ closed_interaction.betting.image_link }})">
+              <h3 class="title">{{ closed_interaction.betting.question }}</h3>
+              <p class="text">{{ closed_interaction.betting.description }}</p>
+            </div>
+            {% if user.is_authenticated %}
+              {% if closed_interaction.is_joined %}
+                {% if closed_interaction.has_answer %}
+                  {% if closed_interaction.is_correct %}
+                    <div class="btn btn-default btn-answer">預測成功</div>
+                  {% else %}
+                    <div class="btn btn-default btn-answer">再接再厲</div>
+                  {% endif %}
+                {% else %}
+                  <div class="btn btn-default btn-answer">已選 <span id="select-answer-previous">{{closed_interaction.selected_answer}}</span></div>
+                {% endif %}
+              {% else %}
+                <div class="btn btn-default btn-timeout">已經不能預測囉</div>
+              {% endif %}
+            {% else %}
+              <div class="btn btn-default btn-timeout">已經不能預測囉</div>
+            {% endif %}
+              <div class="people">{{closed_interaction.total_players_count}}人已預測</div>
           </div>
         </div>
       </div>
@@ -285,7 +317,7 @@
         </div>
       </div>
     </div>
-    <div class="modal fade work-detail" id="play-1" role="dialog">
+    <div class="modal fade work-detail" id="play-current" role="dialog">
       <div class="modal-dialog modal-sm">
         <div class="modal-content font-sans">
           <div class="modal-body text-center">
@@ -301,7 +333,7 @@
         </div>
       </div>
     </div>
-    <div class="modal fade work-detail" id="play-2" role="dialog">
+    <div class="modal fade work-detail" id="play-previous" role="dialog">
       <div class="modal-dialog modal-sm">
         <div class="modal-content font-sans">
           <div class="modal-body text-center">
