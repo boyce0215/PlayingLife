@@ -42,6 +42,25 @@
         </div>
         {% else %}
         <div id="member">
+          <div class="navbar-web">
+            <div class="nav navbar-nav">
+              <div class="navbar-text"><span>連續獲勝</span><span class="count">{{ win_times }}</span><span>次</span></div>
+              <div class="navbar-text"><span>獲得星巴克</span><span class="count">{{ starbucks_cups }}</span><span>杯</span></div>
+              {% if starbucks_cups or not starbucks_cups %}
+                <div class="navbar-text" >
+                  <a target="_blank" href="https://www.facebook.com/PlayingLife-遊戲人生-305766963160804/">找我拿獎品</a>
+                </div>
+              {% endif %}
+            </div>
+            <div class="nav navbar-nav navbar-right"><span id="member-id">{{ user.email }}</span>
+              <button class="btn btn-default navbar-btn btn-custom" id="logout-button" type="button">登出</button>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-mob">
+          <div class="nav navbar-nav navbar-right"><span id="member-id">{{ user.email }}</span>
+            <button class="btn btn-default navbar-btn btn-custom" id="logout-button" type="button">登出</button>
+          </div>
           <div class="nav navbar-nav">
             <div class="navbar-text"><span>連續獲勝</span><span class="count">{{ win_times }}</span><span>次</span></div>
             <div class="navbar-text"><span>獲得星巴克</span><span class="count">{{ starbucks_cups }}</span><span>杯</span></div>
@@ -50,9 +69,6 @@
                 <a target="_blank" href="https://www.facebook.com/PlayingLife-遊戲人生-305766963160804/">找我拿獎品</a>
               </div>
             {% endif %}
-          </div>
-          <div class="nav navbar-nav navbar-right"><span id="member-id">{{ user.email }}</span>
-            <button class="btn btn-default navbar-btn btn-custom" id="logout-button" type="button">登出</button>
           </div>
         </div>
         {% endif %}
@@ -71,8 +87,10 @@
         <div class="row">
           <div class="col-sm-12 content">
             <div class="view" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.7)),url({{ current_interaction.betting.image_link }})">
-              <h3 class="title">{{ current_interaction.betting.question }}</h3>
-              <p class="text">{{ current_interaction.betting.description }}</p>
+              <div class="description">
+                <h3 class="title">{{ current_interaction.betting.question }}</h3>
+                <p class="text">{{ current_interaction.betting.description }}</p>
+              </div>
             </div>
             {% if user.is_authenticated %}
               {% if current_interaction.is_joined %}
@@ -111,8 +129,10 @@
         <div class="row">
           <div class="col-sm-12 content">
             <div class="view" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.7)),url({{ previous_interaction.betting.image_link }})">
-              <h3 class="title">{{ previous_interaction.betting.question }}</h3>
-              <p class="text">{{ previous_interaction.betting.description }}</p>
+              <div class="description">
+                <h3 class="title">{{ previous_interaction.betting.question }}</h3>
+                <p class="text">{{ previous_interaction.betting.description }}</p>
+              </div>
             </div>
             {% if user.is_authenticated %}
               {% if previous_interaction.is_joined %}
@@ -151,8 +171,10 @@
         <div class="row">
           <div class="col-sm-12 content">
             <div class="view" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.7)),url({{ closed_interaction.betting.image_link }})">
-              <h3 class="title">{{ closed_interaction.betting.question }}</h3>
-              <p class="text">{{ closed_interaction.betting.description }}</p>
+              <div class="description">
+                <h3 class="title">{{ closed_interaction.betting.question }}</h3>
+                <p class="text">{{ closed_interaction.betting.description }}</p>
+              </div>
             </div>
             {% if user.is_authenticated %}
               {% if closed_interaction.is_joined %}

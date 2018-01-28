@@ -50,7 +50,32 @@ nav.navbar {
     nav.navbar #member #member-id {
       color: #777;
       margin-right: 8px; }
+    nav.navbar #member .navbar-mob {
+      display: none; }
 
+@media screen and (max-width: 767px) {
+  nav.navbar .navbar-header {
+    float: left; }
+  nav.navbar .navbar-nav {
+    margin: 0; }
+    nav.navbar .navbar-nav .btn-custom {
+      margin-right: 0;
+      margin-left: 8px; }
+  nav.navbar .navbar-right {
+    float: right; }
+  nav.navbar #member .navbar-web {
+    display: none; }
+  nav.navbar #member .navbar-mob {
+    display: block; }
+  nav.navbar #member #member-id {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    width: 25vw; }
+  nav.navbar #member .navbar-text {
+    display: inline-block;
+    clear: both; } }
 header {
   background-image: url(../images/bg.jpg);
   background-size: cover;
@@ -89,36 +114,27 @@ section#current-block, section#previous-block, section#closed-block, section#ran
   section#current-block .heading, section#previous-block .heading, section#closed-block .heading, section#rank .heading {
     font-size: 3rem;
     color: #151719; }
-  section#current-block .title, section#previous-block .title, section#closed-block .title, section#rank .title {
-    color: #fff;
-    font-size: 2.4rem;
-    position: absolute;
-    z-index: 3;
-    bottom: 48px;
-    left: 50%;
-    transform: translateX(-50%); }
-  section#current-block .text, section#previous-block .text, section#closed-block .text, section#rank .text {
-    color: #fff;
-    font-size: 1.4rem;
-    position: absolute;
-    z-index: 3;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%); }
   section#current-block .view, section#previous-block .view, section#closed-block .view, section#rank .view {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.7)), url("https://cimg.cnyes.cool/prod/news/3943773/l/c2a9717b3667bc5eacfb01dc47b04105.jpg");
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
-    width: 920px;
+    width: 100%;
     height: 480px;
     margin: 0 auto;
     position: relative; }
-    section#current-block .view img, section#previous-block .view img, section#closed-block .view img, section#rank .view img {
-      display: block;
-      max-width: 100%;
-      height: auto; }
-  section#current-block .timer, section#previous-block .timer, section#rank .timer {
+    section#current-block .view .description, section#previous-block .view .description, section#closed-block .view .description, section#rank .view .description {
+      position: absolute;
+      bottom: 20px;
+      right: 0;
+      left: 0; }
+    section#current-block .view .title, section#previous-block .view .title, section#closed-block .view .title, section#rank .view .title {
+      color: #fff;
+      font-size: 2.4rem; }
+    section#current-block .view .text, section#previous-block .view .text, section#closed-block .view .text, section#rank .view .text {
+      color: #fff;
+      font-size: 1.4rem; }
+  section#current-block .timer, section#previous-block .timer, section#closed-block .timer, section#rank .timer {
     font-size: 2.2rem; }
   section#current-block .people, section#previous-block .people, section#closed-block .people, section#rank .people {
     font-size: 1.6rem; }
@@ -140,7 +156,7 @@ section#current-block, section#previous-block, section#closed-block, section#ran
     section#current-block .btn-custom:active, section#previous-block .btn-custom:active, section#closed-block .btn-custom:active, section#rank .btn-custom:active {
       background-color: #60758d;
       color: #fff; }
-  .btn-answer, .btn-timeout {
+  section#current-block .btn-answer, section#current-block .btn-timeout, section#previous-block .btn-answer, section#previous-block .btn-timeout, section#closed-block .btn-answer, section#closed-block .btn-timeout, section#rank .btn-answer, section#rank .btn-timeout {
     padding: 8px 24px;
     font-size: 1.8rem;
     margin: 20px 20px;
@@ -149,20 +165,20 @@ section#current-block, section#previous-block, section#closed-block, section#ran
     background-color: #2f4156;
     border-radius: 0px;
     cursor: default; }
-    .btn-answer:focus, .btn-timeout:focus {
+    section#current-block .btn-answer:focus, section#current-block .btn-timeout:focus, section#previous-block .btn-answer:focus, section#previous-block .btn-timeout:focus, section#closed-block .btn-answer:focus, section#closed-block .btn-timeout:focus, section#rank .btn-answer:focus, section#rank .btn-timeout:focus {
       outline: none; }
-    .btn-answer:active, .btn-timeout:active {
+    section#current-block .btn-answer:active, section#current-block .btn-timeout:active, section#previous-block .btn-answer:active, section#previous-block .btn-timeout:active, section#closed-block .btn-answer:active, section#closed-block .btn-timeout:active, section#rank .btn-answer:active, section#rank .btn-timeout:active {
       box-shadow: initial; }
-  .btn-timeout {
+  section#current-block .btn-timeout, section#previous-block .btn-timeout, section#closed-block .btn-timeout, section#rank .btn-timeout {
     display: none; }
 
+@media screen and (max-width: 767px) {
+  section#current-block .view, section#previous-block .view, section#closed-block .view, section#rank .view {
+    height: 248px; } }
 section#current-block .row:nth-child(3) {
   margin-top: 20px; }
 
-section#previous-block {
-  padding-top: 10px; }
-
-section#closed-block {
+section#previous-block, section#closed-block {
   padding-top: 10px; }
 
 section#rank .content {

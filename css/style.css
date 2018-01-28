@@ -50,7 +50,32 @@ nav.navbar {
     nav.navbar #member #member-id {
       color: #777;
       margin-right: 8px; }
+    nav.navbar #member .navbar-mob {
+      display: none; }
 
+@media screen and (max-width: 767px) {
+  nav.navbar .navbar-header {
+    float: left; }
+  nav.navbar .navbar-nav {
+    margin: 0; }
+    nav.navbar .navbar-nav .btn-custom {
+      margin-right: 0;
+      margin-left: 8px; }
+  nav.navbar .navbar-right {
+    float: right; }
+  nav.navbar #member .navbar-web {
+    display: none; }
+  nav.navbar #member .navbar-mob {
+    display: block; }
+  nav.navbar #member #member-id {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    width: 25vw; }
+  nav.navbar #member .navbar-text {
+    display: inline-block;
+    clear: both; } }
 header {
   background-image: url(../images/bg.jpg);
   background-size: cover;
@@ -83,46 +108,37 @@ header {
       color: #fff;
       border-color: #ec3d3d; }
 
-section#play, section#result, section#rank {
+section#current-block, section#previous-block, section#closed-block, section#rank {
   background-color: #F2F2F2;
   padding: 40px 0; }
-  section#play .heading, section#result .heading, section#rank .heading {
+  section#current-block .heading, section#previous-block .heading, section#closed-block .heading, section#rank .heading {
     font-size: 3rem;
     color: #151719; }
-  section#play .title, section#result .title, section#rank .title {
-    color: #fff;
-    font-size: 2.4rem;
-    position: absolute;
-    z-index: 3;
-    bottom: 48px;
-    left: 50%;
-    transform: translateX(-50%); }
-  section#play .text, section#result .text, section#rank .text {
-    color: #fff;
-    font-size: 1.4rem;
-    position: absolute;
-    z-index: 3;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%); }
-  section#play .view, section#result .view, section#rank .view {
+  section#current-block .view, section#previous-block .view, section#closed-block .view, section#rank .view {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.7)), url("https://cimg.cnyes.cool/prod/news/3943773/l/c2a9717b3667bc5eacfb01dc47b04105.jpg");
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
-    width: 920px;
+    width: 100%;
     height: 480px;
     margin: 0 auto;
     position: relative; }
-    section#play .view img, section#result .view img, section#rank .view img {
-      display: block;
-      max-width: 100%;
-      height: auto; }
-  section#play .timer, section#result .timer, section#rank .timer {
+    section#current-block .view .description, section#previous-block .view .description, section#closed-block .view .description, section#rank .view .description {
+      position: absolute;
+      bottom: 20px;
+      right: 0;
+      left: 0; }
+    section#current-block .view .title, section#previous-block .view .title, section#closed-block .view .title, section#rank .view .title {
+      color: #fff;
+      font-size: 2.4rem; }
+    section#current-block .view .text, section#previous-block .view .text, section#closed-block .view .text, section#rank .view .text {
+      color: #fff;
+      font-size: 1.4rem; }
+  section#current-block .timer, section#previous-block .timer, section#closed-block .timer, section#rank .timer {
     font-size: 2.2rem; }
-  section#play .people, section#result .people, section#rank .people {
+  section#current-block .people, section#previous-block .people, section#closed-block .people, section#rank .people {
     font-size: 1.6rem; }
-  section#play .btn-custom, section#result .btn-custom, section#rank .btn-custom {
+  section#current-block .btn-custom, section#previous-block .btn-custom, section#closed-block .btn-custom, section#rank .btn-custom {
     margin: 20px 22px;
     padding: 16px 24px;
     font-size: 1.8rem;
@@ -130,17 +146,17 @@ section#play, section#result, section#rank {
     color: #fff;
     background-color: #4f77a5;
     border-radius: 30px; }
-    section#play .btn-custom:hover, section#result .btn-custom:hover, section#rank .btn-custom:hover {
+    section#current-block .btn-custom:hover, section#previous-block .btn-custom:hover, section#closed-block .btn-custom:hover, section#rank .btn-custom:hover {
       background-color: #538bde;
       color: #fff; }
-    section#play .btn-custom:focus, section#result .btn-custom:focus, section#rank .btn-custom:focus {
+    section#current-block .btn-custom:focus, section#previous-block .btn-custom:focus, section#closed-block .btn-custom:focus, section#rank .btn-custom:focus {
       outline: none;
       color: #fff;
       background-color: #4f77a5; }
-    section#play .btn-custom:active, section#result .btn-custom:active, section#rank .btn-custom:active {
+    section#current-block .btn-custom:active, section#previous-block .btn-custom:active, section#closed-block .btn-custom:active, section#rank .btn-custom:active {
       background-color: #60758d;
       color: #fff; }
-  section#play .btn-answer, section#play .btn-timeout, section#result .btn-answer, section#result .btn-timeout, section#rank .btn-answer, section#rank .btn-timeout {
+  section#current-block .btn-answer, section#current-block .btn-timeout, section#previous-block .btn-answer, section#previous-block .btn-timeout, section#closed-block .btn-answer, section#closed-block .btn-timeout, section#rank .btn-answer, section#rank .btn-timeout {
     padding: 8px 24px;
     font-size: 1.8rem;
     margin: 20px 20px;
@@ -149,17 +165,20 @@ section#play, section#result, section#rank {
     background-color: #2f4156;
     border-radius: 0px;
     cursor: default; }
-    section#play .btn-answer:focus, section#play .btn-timeout:focus, section#result .btn-answer:focus, section#result .btn-timeout:focus, section#rank .btn-answer:focus, section#rank .btn-timeout:focus {
+    section#current-block .btn-answer:focus, section#current-block .btn-timeout:focus, section#previous-block .btn-answer:focus, section#previous-block .btn-timeout:focus, section#closed-block .btn-answer:focus, section#closed-block .btn-timeout:focus, section#rank .btn-answer:focus, section#rank .btn-timeout:focus {
       outline: none; }
-    section#play .btn-answer:active, section#play .btn-timeout:active, section#result .btn-answer:active, section#result .btn-timeout:active, section#rank .btn-answer:active, section#rank .btn-timeout:active {
+    section#current-block .btn-answer:active, section#current-block .btn-timeout:active, section#previous-block .btn-answer:active, section#previous-block .btn-timeout:active, section#closed-block .btn-answer:active, section#closed-block .btn-timeout:active, section#rank .btn-answer:active, section#rank .btn-timeout:active {
       box-shadow: initial; }
-  section#play #current-betting-countdown .btn-timeout, section#result #current-betting-countdown .btn-timeout, section#rank #current-betting-countdown .btn-timeout {
+  section#current-block .btn-timeout, section#previous-block .btn-timeout, section#closed-block .btn-timeout, section#rank .btn-timeout {
     display: none; }
 
-section#play .row:nth-child(3) {
+@media screen and (max-width: 767px) {
+  section#current-block .view, section#previous-block .view, section#closed-block .view, section#rank .view {
+    height: 248px; } }
+section#current-block .row:nth-child(3) {
   margin-top: 20px; }
 
-section#result {
+section#previous-block, section#closed-block {
   padding-top: 10px; }
 
 section#rank .content {
@@ -253,10 +272,10 @@ section#rank .times {
   margin-top: 0px;
   margin-bottom: 0px; }
 
-#play-1 .answer, #play-2 .answer {
+#play-current .answer, #play-previous .answer {
   font-weight: bold;
   padding-left: 4px; }
-#play-1 .btn-custom, #play-2 .btn-custom {
+#play-current .btn-custom, #play-previous .btn-custom {
   margin: 12px 8px;
   padding: 8px 16px;
   font-size: 1.8rem; }

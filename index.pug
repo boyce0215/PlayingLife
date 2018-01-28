@@ -46,18 +46,32 @@ html(lang="zh-hant-tw")
             button.btn.btn-default.navbar-btn.btn-custom(type="button" data-target="#register" data-toggle="modal") 註冊
         //- {% else %}
         #member
-          .nav.navbar-nav
-            .navbar-text
-              span 連續獲勝
-              span.count 0
-              span 次
-            .navbar-text
-              span 獲得星巴克
-              span.count 0
-              span 杯
-          .nav.navbar-nav.navbar-right
-            span#member-id danney@comoney.com.tw
-            button.btn.btn-default.navbar-btn.btn-custom#logout-button(type="button") 登出
+          .navbar-web
+            .nav.navbar-nav
+              .navbar-text
+                span 連續獲勝
+                span.count 0
+                span 次
+              .navbar-text
+                span 獲得星巴克
+                span.count 0
+                span 杯
+            .nav.navbar-nav.navbar-right
+              span#member-id danney@comoney.com.tw
+              button.btn.btn-default.navbar-btn.btn-custom#logout-button(type="button") 登出
+          .navbar-mob
+            .nav.navbar-nav.navbar-right
+              span#member-id danney@comoney.com.tw
+              button.btn.btn-default.navbar-btn.btn-custom#logout-button(type="button") 登出
+            .nav.navbar-nav
+              .navbar-text
+                span 連續獲勝
+                span.count 0
+                span 次
+              .navbar-text
+                span 獲得星巴克
+                span.count 0
+                span 杯
         //- {% endif %}
     header#banner
       .container.text-center.font-sans
@@ -65,7 +79,7 @@ html(lang="zh-hant-tw")
         br
         p.text 現在開始每天進來玩預測遊戲<br>連續猜對 3 次 直接送你大杯星巴克
         a.btn.btn-default.btn-custom#goto-play(href="#play") 馬上玩遊戲
-    section#play
+    section#current-block
       .container.text-center.font-sans
         h2.heading 玩預測請你喝星巴克，就是這麼簡單
         //- hr
@@ -74,8 +88,9 @@ html(lang="zh-hant-tw")
             //- h3.title {{ current_betting.question }}
             .view
               //- img.img-responsive(src="https://i.imgur.com/SoJiRpk.gif", alt="")
-              h3.title 台積電(2330)明日收盤股價預測
-              p.text 台灣指數不斷創新高，行情還能維持多久？
+              .description
+                h3.title 台積電(2330)明日收盤股價預測
+                p.text 台灣指數不斷創新高，行情還能維持多久？
             //- {% if not is_joined %}
             //- {% if user.is_authenticated %}
             //- button.btn.btn-default.btn-custom.answer-option(type="button" data-target="#alert" data-toggle="modal" value="option_first") {{ current_betting.option_first }}
@@ -101,8 +116,9 @@ html(lang="zh-hant-tw")
             //- h3.title {{ current_betting.question }}
             .view
               //- img.img-responsive(src="https://i.imgur.com/SoJiRpk.gif", alt="")
-              h3.title 台積電(2330)明日收盤股價預測
-              p.text 台灣指數不斷創新高，行情還能維持多久？
+              .description
+                h3.title 台積電(2330)明日收盤股價預測
+                p.text 台灣指數不斷創新高，行情還能維持多久？
             //- {% if not is_joined %}
             //- {% if user.is_authenticated %}
             //- button.btn.btn-default.btn-custom.answer-option(type="button" data-target="#alert" data-toggle="modal" value="option_first") {{ current_betting.option_first }}
@@ -123,15 +139,16 @@ html(lang="zh-hant-tw")
               .btn.btn-default.btn-timeout 已經不能預測囉
             .btn.btn-default.btn-answer 已選 
               span#select-answer 明天收盤一定漲
-    section#result
+    section#previous-block
       .container.text-center.font-sans
         h2.heading 昨日預測戰績
         //- hr
         .row
           .col-sm-12.content
             .view
-              h3.title 台積電(2330)明日收盤股價預測
-              p.text 台灣指數不斷創新高，行情還能維持多久？
+              .description
+                h3.title 台積電(2330)明日收盤股價預測
+                p.text 台灣指數不斷創新高，行情還能維持多久？
             .btn.btn-default.btn-answer 預測成功
             .btn.btn-default.btn-answer 再接再厲
             .people 1人已參加
@@ -309,7 +326,7 @@ html(lang="zh-hant-tw")
                 span.help-block.with-errors
               button.btn.btn-primary.btn-custom.btn-cancel(type="cancel") 取消
               button.btn.btn-primary.btn-custom.btn-right#goto-sent(type="submit") 重設密碼
-    .modal.fade.work-detail#play-1(role="dialog")
+    .modal.fade.work-detail#play-current(role="dialog")
       .modal-dialog.modal-sm
         .modal-content.font-sans
           .modal-body.text-center
@@ -322,7 +339,7 @@ html(lang="zh-hant-tw")
                 span.answer 明天收盤一定跌
               button.btn.btn-primary.btn-custom.answer-select(type="cancel") 後悔了
               button.btn.btn-primary.btn-custom.answer-select(type="submit") 不後悔
-    .modal.fade.work-detail#play-2(role="dialog")
+    .modal.fade.work-detail#play-previous(role="dialog")
       .modal-dialog.modal-sm
         .modal-content.font-sans
           .modal-body.text-center
