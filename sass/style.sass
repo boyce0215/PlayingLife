@@ -84,6 +84,7 @@ nav.navbar
       .navbar-text
         display: inline-block
         clear: both
+        margin-right: 12px
 header
   background-image: url(../images/bg.jpg)
   background-size: cover
@@ -206,10 +207,6 @@ section#current-block,section#previous-block,section#closed-block,section#rank
       box-shadow: initial
   .btn-timeout
     display: none
-@media screen and (max-width: 767px)
-  section#current-block,section#previous-block,section#closed-block,section#rank
-    .view
-      height: 248px
 section#current-block
   .row:nth-child(3)
     margin-top: 20px
@@ -254,6 +251,18 @@ section#rank
       font-weight: bold
       color: #4f77a5
       // vertical-align: middle
+@media screen and (max-width: 767px)
+  section#current-block,section#previous-block,section#closed-block,section#rank
+    .view
+      height: 248px
+  section#rank
+    .name
+      font-size: 2rem
+      text-align: center
+    .detail
+      text-align: center
+      .times:last-child
+        margin-right: 0
 #login,#register,#forget,#sent,#reset-password
   .modal-content
     padding: 25px 40px

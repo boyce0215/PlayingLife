@@ -75,7 +75,8 @@ nav.navbar {
     width: 25vw; }
   nav.navbar #member .navbar-text {
     display: inline-block;
-    clear: both; } }
+    clear: both;
+    margin-right: 12px; } }
 header {
   background-image: url(../images/bg.jpg);
   background-size: cover;
@@ -172,9 +173,6 @@ section#current-block, section#previous-block, section#closed-block, section#ran
   section#current-block .btn-timeout, section#previous-block .btn-timeout, section#closed-block .btn-timeout, section#rank .btn-timeout {
     display: none; }
 
-@media screen and (max-width: 767px) {
-  section#current-block .view, section#previous-block .view, section#closed-block .view, section#rank .view {
-    height: 248px; } }
 section#current-block .row:nth-child(3) {
   margin-top: 20px; }
 
@@ -216,6 +214,17 @@ section#rank .times {
     font-weight: bold;
     color: #4f77a5; }
 
+@media screen and (max-width: 767px) {
+  section#current-block .view, section#previous-block .view, section#closed-block .view, section#rank .view {
+    height: 248px; }
+
+  section#rank .name {
+    font-size: 2rem;
+    text-align: center; }
+  section#rank .detail {
+    text-align: center; }
+    section#rank .detail .times:last-child {
+      margin-right: 0; } }
 #login .modal-content, #register .modal-content, #forget .modal-content, #sent .modal-content, #reset-password .modal-content {
   padding: 25px 40px; }
   #login .modal-content a, #register .modal-content a, #forget .modal-content a, #sent .modal-content a, #reset-password .modal-content a {
